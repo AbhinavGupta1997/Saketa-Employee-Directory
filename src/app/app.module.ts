@@ -1,15 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderTopComponent } from './header-top/header-top.component';
 import { ContainerMainBodyComponent } from './container-main-body/container-main-body.component';
 import { ContainerBodyComponent } from './container-body/container-body.component';
-
 import { FilterNavbarComponent } from './filter-navbar/filter-navbar.component';
-
-// import { ContainerSectionAsideComponent } from './container-section-aside/container-section-aside.component';
 import { SearchFilterComponent } from './search-filter/search-filter.component';
 import { ContainerDisplayCardComponent } from './container-display-card/container-display-card.component';
 import { FormsModule } from '@angular/forms';
@@ -27,7 +23,6 @@ import { EmployeeService } from './employee.service';
     ContainerMainBodyComponent,
     ContainerBodyComponent,
     FilterNavbarComponent,
-    // ContainerSectionAsideComponent,
     SearchFilterComponent,
     ContainerDisplayCardComponent,
     AddEmployeeFormComponent,

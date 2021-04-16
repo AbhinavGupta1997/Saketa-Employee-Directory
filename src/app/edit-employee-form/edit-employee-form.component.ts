@@ -11,7 +11,7 @@ export class EditEmployeeFormComponent implements OnInit {
 
   @Input() employeeId: string = '';
 
-  empId = this.employeeId
+  empId = this.employeeId;
 
   offices = ['Seattle', 'India'];
   departments = ['IT', 'HR', 'MD', 'Sales'];
@@ -49,9 +49,10 @@ export class EditEmployeeFormComponent implements OnInit {
   }
 
   modifyEmployee() {
+    let self = this
     var employeeData = JSON.parse(localStorage.getItem("employee")!);
     var empIndex = employeeData.findIndex(function(element: Employee) {
-      return element.id == '3';
+      return element.id == self.employeeId;
     });
   
     if(empIndex > -1){
