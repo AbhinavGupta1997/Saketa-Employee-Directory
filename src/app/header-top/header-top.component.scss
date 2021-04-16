@@ -1,0 +1,47 @@
+:host {
+    height: 80px;
+    padding: 10px 0;
+    display: inline-flex;
+    width: 100%;
+    border-bottom: 2px solid #F0F0F0;
+}
+
+:host>img {
+    margin-right: 10px;
+    height: fit-content;
+}
+
+:host p:first-child, :host span:first-child {
+    color: #03B2FC;
+}
+
+:host p:first-child {
+    font-size: 28px;
+    margin: 0;
+}
+
+:host p:last-child, :host span:last-child {
+    color: #878787;
+}
+
+:host p:last-child {
+    font-size: 15px;
+    line-height: 8px;
+    margin: 0;
+}
+
+:host>div:last-child {
+    margin-left: auto;
+    display: inline-flex;
+    font-size: 25px;
+}
+
+.pd-25 {
+    padding-top: 21px;
+    margin-right: 10px;
+}
+
+:host>div img {
+    height: fit-content;
+}
+

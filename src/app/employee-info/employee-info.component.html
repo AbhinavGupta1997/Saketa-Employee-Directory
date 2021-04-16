@@ -1,0 +1,44 @@
+<div class="modalProfileCardContent">
+    <div>
+        <div class="image-cropper">
+            <img src="assets\Images\User image.jpg">
+        </div>                   
+        <div class="modalProfileNameContainer">
+            <div>
+                <label>First Name: </label>
+                <div class="modalFName values">{{ employee.firstName }}</div>
+            </div>
+            <div>
+                <label>Last Name: </label>
+                <div class="modalLName values">{{ employee.lastName }}</div>
+            </div>
+            <div>
+                <label>Preferred Name: </label>
+                <div class="modalPName values">{{ employee.preferredName }}</div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h2>Contact</h2>
+        <label>Email: </label>
+        <div class="modalEmail values">{{ employee.email }}</div>
+        <label>Phone: </label>
+        <div class="modalPhone values">{{ employee.phoneNumber }}</div>
+        <label>Skype: </label>
+        <div class="modalSID values">{{ employee.skypeId }}</div>
+    </div>
+    <div>
+        <h2>Job Description</h2>
+        <label>Job-Title: </label>
+        <div class="modalJTitle values">{{ employee.jobTitle }}</div>
+        <label>Department: </label>
+        <div class="modalDept values">{{ employee.department }}</div>
+        <label>Location: </label>
+        <div class="modalOffice values">{{ employee.office }}</div>
+    </div>
+    <button id="modalButton" (click)="changeEditStatus()">Edit</button>
+    <button (click)="changeDisplayStatus(false)">Close</button>
+    <div *ngIf="editBtnStatus == true" id="modalEditEmployee" class="editModal">
+        <app-edit-employee-form [employeeId]="employeeId" (btnStatusEvent)="changeStatusFalse($event)"></app-edit-employee-form>
+    </div>
+</div>

@@ -1,0 +1,169 @@
+:host {
+    height: 140px;
+}
+
+.search-by-types {
+    padding-top: 30px;
+}
+
+.search-by-alphabet {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.search-by-alphabet button {
+    font-size: 17px;
+    width: inherit;
+    height: 30px;
+    margin: 0 1px;
+    background-color: #00B1FC;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.search-by-alphabet button:hover {
+    background-color: RoyalBlue;
+}
+
+.search-by-types>div:last-child {
+    display: inline-flex;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.form-filter {
+    display: flex;
+    align-items: center;
+}
+
+.search-by-types label {
+    font-size: 13px;
+    margin-right: 5px;
+}
+
+.search-by-types input {
+    height: 28px;
+    width: 250px;
+    padding: 5px;
+    margin-right: 20px;
+    border: 1px solid #D0D0D0;
+}
+
+.search-clear {
+    height: 28px;
+    width: 65px;
+    background-color: #69BA00;
+    border: none;
+    color: white;
+    font-size: 11px;
+}
+
+.filter-by {
+    margin-left: 40px;
+}
+
+.search-by-types select {
+    height: 28px;
+    width: 160px;
+    padding: 5px;
+    border: 1px solid #D0D0D0;
+}
+
+#add-employee {
+    margin-left: auto;
+    height: 28px;
+    background-color: #00B1FC;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.modal {
+    position: fixed;
+    z-index: 1;
+    padding: 20px 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+p {
+    font-size: 11px;
+    margin-bottom: 13px;
+}
+
+.display-card-container {
+    height: 350px;
+    border: 2px solid #ebebeb;
+    padding: 0 10px;
+    padding-bottom: 15px;
+    overflow-y: auto;
+}
+
+.wd-24 {
+    width: 24%;
+    display: inline-block;
+    margin: 15px 5px 0;
+}
+
+.display-card-container {
+    div {
+        div:first-child {
+            background-color: #e9e8e8;
+            width: 100%;
+            padding: 8px;
+            display: inline-flex;
+            div {
+                margin-left: 8px;
+                div {
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+        }
+    }
+}
+
+img {
+    height: 61px;
+}
+
+.display-card-container > div > div > div > div {
+    font-size: 10px;
+    color: #969595;
+}
+
+.display-card-container > div > div > div > div:first-child {
+    font-size: 13px;
+    font-weight: 600;
+    color: #595959;
+}
+
+i {
+    margin-right: 6px;
+    font-size: 12px;
+}
+
+.modalProfileCard {
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.wd-calc {
+    width: calc(100% - 57px);
+}

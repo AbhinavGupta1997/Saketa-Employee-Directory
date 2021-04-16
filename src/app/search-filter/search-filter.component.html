@@ -1,0 +1,53 @@
+<div class="search-by-types">
+    <div class="search-by-alphabet" id="btn-container">
+        <button><i class="fas fa-user-alt"></i></button>
+        <button *ngFor="let alphabet of alphabets" (click)="setAlphabet(alphabet)">{{ alphabet }}</button>
+    </div>
+    <div>
+        <form class="form-filter">
+            <label>Search</label>
+             <input type="text" #newItem id="inputSearchFilter" name="search" (keyup)="searchEmployee(newItem.value)"
+             placeholder=" Enter any keyword">
+            <button type="reset" class="search-clear" (click)="onClear()">Clear</button>
+            <label for="filter-type" class="filter-by">Filter by</label>
+            <select name="filter-type" id="filter-type" (change)="setFilterBy()">
+                <option value="preferredName">Preferred Name</option>
+                <option value="email">Email</option>
+                <option value="jobTitle">Job Title</option>
+                <option value="office">Office</option>
+                <option value="department">Department</option>
+                <option value="phoneNumber">Phone Number</option>
+                <option value="skypeId">Skype ID</option>
+            </select>
+        </form>
+        <button id="add-employee" (click)="changeStatus()">Add Employee</button>
+        <div *ngIf="btnStatus == true" id="modal-add-employee" class="modal">
+            <app-add-employee-form (btnStatusEvent)="changeStatusFalse($event)"></app-add-employee-form>
+        </div>
+    </div>
+</div>
+<p>
+    <b>Note: </b>Please use the advanced filter options to refine your results.
+</p>
+<p>{{ searchText }}</p>
+<div class="display-card-container">
+    <div *ngFor="let emp of empData" class="wd-24">
+        <div (click)="changeDisplayStatus(emp.id)">
+            <img src="assets\Images\User image.jpg">
+            <div class="wd-calc">
+                <div class="displayName">{{ emp.preferredName }}</div>
+                <div class="displayJobTitle">{{ emp.jobTitle }}</div>
+                <div class="displayDept">{{ emp.department }} Department</div>
+                <div>
+                    <i class="fas fa-phone-square-alt"></i>
+                    <i class="fas fa-envelope"></i>
+                    <i class="fas fa-comment"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-heart"></i></div>
+            </div>
+        </div>
+        <div *ngIf="displayStatus==true" id="EmpDetails" class="modalProfileCard">
+            <app-employee-info [employeeId]="empId" (displayStatusEvent)="changeDisplayFalse($event)"></app-employee-info>
+        </div>
+    </div>
+</div>

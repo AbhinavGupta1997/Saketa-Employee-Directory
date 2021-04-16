@@ -1,0 +1,27 @@
+:host {
+    width: 170px;
+    padding-top: 30px;
+}
+
+:host>section {
+    margin-bottom: 30px;
+    font-size: 10px;
+    color: #8C8B8B;
+}
+
+:host h3 {
+    font-size: 12px;
+    color: #575656;
+}
+
+:host p {
+    display: inline;
+}
+
+#viewMore, #viewLess {
+    color: #54C3FD;
+}
+
+:host section>div:hover {
+    cursor: pointer;
+}
