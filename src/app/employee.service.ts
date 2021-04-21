@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Employee } from './employee.model';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,16 +8,21 @@ import { Subject } from 'rxjs';
 export class EmployeeService {
 
   employeeData: Employee[] = JSON.parse(localStorage.getItem("employee")!);
-  selectedEmployee: Employee = {id: "", firstName: "", lastName: "", preferredName: "", email: "",
-  jobTitle: "", department: "", office: "", phoneNumber: "", skypeId: ""};
+  employee: Subject<string> = new Subject();
 
-  private _employeeService = new Subject<Employee[]>();
-  empData = this._employeeService.asObservable();
+  employees = new Subject<Employee[]>();
 
   constructor() { }
 
   getEmployeeData(employees: Employee[]) {
-    this._employeeService.next(employees) 
+    this.employees.next(employees);
   }
 
+  updateEmployee(value: Employee[]) {
+    this.employees.next(value);
+  }
+
+  getEmpData(): Observable<Employee[]> {
+    return this.employees.asObservable();
+  }
 }

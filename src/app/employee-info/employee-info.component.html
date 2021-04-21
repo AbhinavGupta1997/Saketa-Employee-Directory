@@ -39,6 +39,6 @@
     <button id="modalButton" (click)="changeEditStatus()">Edit</button>
     <button (click)="changeDisplayStatus(false)">Close</button>
     <div *ngIf="editBtnStatus == true" id="modalEditEmployee" class="editModal">
-        <app-edit-employee-form [employeeId]="employeeId" (btnStatusEvent)="changeStatusFalse($event)"></app-edit-employee-form>
+        <app-add-employee-form [employeeId]="employeeId" (btnStatusEvent)="changeStatusFalse($event)"></app-add-employee-form>
     </div>
 </div>

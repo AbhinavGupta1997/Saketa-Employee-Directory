@@ -6,7 +6,7 @@
     <div>
         <form class="form-filter">
             <label>Search</label>
-             <input type="text" #newItem id="inputSearchFilter" name="search" (keyup)="searchEmployee(newItem.value)"
+             <input type="text" #newItem id="inputSearchFilter" name="search" (keyup)="sendData(newItem.value)"
              placeholder=" Enter any keyword">
             <button type="reset" class="search-clear" (click)="onClear()">Clear</button>
             <label for="filter-type" class="filter-by">Filter by</label>
@@ -29,7 +29,6 @@
 <p>
     <b>Note: </b>Please use the advanced filter options to refine your results.
 </p>
-<p>{{ searchText }}</p>
 <div class="display-card-container">
     <div *ngFor="let emp of empData" class="wd-24">
         <div (click)="changeDisplayStatus(emp.id)">

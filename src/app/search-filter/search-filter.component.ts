@@ -17,79 +17,86 @@ export class SearchFilterComponent implements OnInit {
 
   employeeData: any;
 
-  @Output() newItemEvent = new EventEmitter<string>();
-
   filteredEmpData: any;
   displayStatus: boolean = false;
   empId: string ="";
 
   empData: Employee[] = [];
 
-  constructor(private _employeeService: EmployeeService) { 
+  constructor(private employees: EmployeeService) { 
   }
 
-  ngOnInit(): void {    
+  isSearchTextSent = false;
+
+  ngOnInit() {
+
     this.displayEmployees();
-    this._employeeService.empData.subscribe(data => this.empData = data);
+    this.employees.getEmpData().subscribe(data => this.empData = data);
     this.filteredEmpData = this.empData;
 
-    this.employeeData = this._employeeService.employeeData;
+    this.employeeData = this.employees.employeeData;
   }
 
-  searchEmployee(searchText: string) {
-    this.filteredEmpData = this._employeeService.employeeData;
+  sendData(searchText: string) {
+    this.isSearchTextSent = true;
     if(searchText && this.filterByVal === "preferredName") {
-      this.filteredEmpData = this.filteredEmpData.filter((employee: Employee) => {
+      var employee = this.filteredEmpData.filter((employee: Employee) => {
         return employee.preferredName.toLowerCase().includes(searchText.toLowerCase());
       })
     }
     else if(searchText && this.filterByVal === "email") {
-      this.filteredEmpData = this.filteredEmpData.filter((employee: Employee) => {
+      employee = this.filteredEmpData.filter((employee: Employee) => {
         return employee.email.toLowerCase().includes(searchText.toLowerCase());
       })
     }
     else if(searchText && this.filterByVal === "jobTitle") {
-      this.filteredEmpData = this.filteredEmpData.filter((employee: Employee) => {
+      employee = this.filteredEmpData.filter((employee: Employee) => {
         return employee.jobTitle.toLowerCase().includes(searchText.toLowerCase());
       })
     }
     else if(searchText && this.filterByVal === "department") {
-      this.filteredEmpData = this.filteredEmpData.filter((employee: Employee) => {
+      employee = this.filteredEmpData.filter((employee: Employee) => {
         return employee.department.toLowerCase().includes(searchText.toLowerCase());
       })
     }
     else if(searchText && this.filterByVal === "office") {
-      this.filteredEmpData = this.filteredEmpData.filter((employee: Employee) => {
+      employee = this.filteredEmpData.filter((employee: Employee) => {
         return employee.office.toLowerCase().includes(searchText.toLowerCase());
       })
     }
     else if(searchText && this.filterByVal === "phoneNumber") {
-      this.filteredEmpData = this.filteredEmpData.filter((employee: Employee) => {
+      employee = this.filteredEmpData.filter((employee: Employee) => {
         return employee.phoneNumber.toLowerCase().includes(searchText.toLowerCase());
       })
     }
     else if(searchText && this.filterByVal === "skypeId") {
-      this.filteredEmpData = this.filteredEmpData.filter((employee: Employee) => {
+      employee = this.filteredEmpData.filter((employee: Employee) => {
         return employee.skypeId.toLowerCase().includes(searchText.toLowerCase());
       })
     }
-    else {
-      this._employeeService.getEmployeeData(this.filteredEmpData);
+    else if (searchText == "" || searchText == null) {
+      employee = this.employees.employeeData;
     }
-    this._employeeService.getEmployeeData(this.filteredEmpData);
+    else {
+      employee = this.employees.getEmployeeData(this.employees.employeeData);
+    }
     console.log(searchText);
+
+    this.employees.updateEmployee(employee);
+    this.employees.employee.next(searchText);
   }
 
   setAlphabet(alphabet: string) {
-    this._employeeService.getEmployeeData(this._employeeService.employeeData.filter(employee => 
-      employee.firstName.toLowerCase().startsWith(alphabet.toLowerCase())));
+    var employee = this.employees.employeeData.filter(employee => 
+      employee.preferredName.toLowerCase().startsWith(alphabet.toLowerCase()));
 
+    this.employees.updateEmployee(employee);
     console.log(alphabet);
-    console.log(this._employeeService.employeeData);
+    console.log(this.employees.employeeData);
   }
 
   displayEmployees() {
-    this.empData = this._employeeService.employeeData;
+    this.empData = this.employees.employeeData;
   }
 
   setFilterBy() {
@@ -105,11 +112,6 @@ export class SearchFilterComponent implements OnInit {
     this.btnStatus = newVal;
   }
 
-  addNewItem(value: string) {
-    this.newItemEvent.emit(value);
-    console.log(value);
-  }
-
   changeDisplayStatus(value: string) {
     this.displayStatus = true;
     this.empId = value;
@@ -121,7 +123,7 @@ export class SearchFilterComponent implements OnInit {
   }
 
   onClear() {
-    this._employeeService.getEmployeeData(this._employeeService.employeeData);
+    this.employees.getEmployeeData(this.employees.employeeData);
   }
  
 }

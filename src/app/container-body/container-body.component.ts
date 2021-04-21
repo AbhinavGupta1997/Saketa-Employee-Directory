@@ -15,12 +15,4 @@ export class ContainerBodyComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addItem(newItem: string) {
-    this.items = newItem;
-    this.currentItem = this.items;
-    console.log(this.items);
-    console.log(newItem);
-    console.log(this.currentItem);
-  }
-
 }

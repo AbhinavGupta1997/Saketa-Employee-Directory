@@ -21,16 +21,17 @@ export class FilterNavbarComponent implements OnInit {
 
   filterApplied = '';
 
-  constructor(private _employeeService: EmployeeService) { }
+  constructor(private employees: EmployeeService) { }
 
   ngOnInit(): void {
   }
 
   applyFilter(value: string) {
-  this._employeeService.getEmployeeData(this._employeeService.employeeData.filter(employee => 
-		employee.department == value || employee.jobTitle == value || employee.office == value));
+    var employee = this.employeeData.filter((employee: any) =>
+      employee.department == value || employee.jobTitle == value || employee.office == value);
+    this.employees.updateEmployee(employee);
 
-	console.log(this._employeeService.employeeData);
+	console.log(this.employees.employeeData);
   }
 
   onViewMoreClick() {

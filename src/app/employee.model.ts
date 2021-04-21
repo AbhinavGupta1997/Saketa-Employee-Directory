@@ -10,17 +10,16 @@ export class Employee {
     public phoneNumber: string;
     public skypeId: string;
 
-    constructor(id: string, fName: string, lName: string, prefName: string, email: string, jTitle: string,
-        office: string, dept: string, pNumber: string, skype: string) {
+    constructor(id: string, args: any) {
             this.id = id;
-            this.firstName = fName;
-            this.lastName = lName;
-            this.preferredName = prefName;
-            this.email = email;
-            this.jobTitle = jTitle;
-            this.office = office;
-            this.department = dept;
-            this.phoneNumber = pNumber;
-            this.skypeId = skype;
+            this.firstName = args.firstName;
+            this.lastName = args.lastName;
+            this.preferredName = args.preferredName;
+            this.email = args.email;
+            this.jobTitle = args.jobTitle;
+            this.office = args.office;
+            this.department = args.department;
+            this.phoneNumber = args.phoneNumber;
+            this.skypeId = args.skypeId;
     }
 }
