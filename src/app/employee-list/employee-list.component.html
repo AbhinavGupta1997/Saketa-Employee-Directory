@@ -46,7 +46,7 @@
             </div>
         </div>
         <div *ngIf="displayStatus==true" id="EmpDetails" class="modalProfileCard">
-            <app-employee-info [employeeId]="empId" (displayStatusEvent)="changeDisplayFalse($event)"></app-employee-info>
+            <app-employee-modal-popup [employeeId]="empId" (displayStatusEvent)="changeDisplayFalse($event)"></app-employee-modal-popup>
         </div>
     </div>
 </div>

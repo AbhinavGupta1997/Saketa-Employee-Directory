@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EmployeeInfoComponent } from './employee-info.component';
+import { SideNavbarComponent } from './side-navbar.component';
 
-describe('EmployeeInfoComponent', () => {
-  let component: EmployeeInfoComponent;
-  let fixture: ComponentFixture<EmployeeInfoComponent>;
+describe('ContainerAsideFilterComponent', () => {
+  let component: SideNavbarComponent;
+  let fixture: ComponentFixture<SideNavbarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EmployeeInfoComponent ]
+      declarations: [ SideNavbarComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EmployeeInfoComponent);
+    fixture = TestBed.createComponent(SideNavbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

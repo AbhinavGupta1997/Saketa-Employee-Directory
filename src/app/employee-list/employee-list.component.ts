@@ -3,12 +3,12 @@ import { Employee } from '../employee.model';
 import { EmployeeService } from '../employee.service';
 
 @Component({
-  selector: 'app-search-filter',
-  templateUrl: './search-filter.component.html',
-  styleUrls: ['./search-filter.component.scss']
+  selector: 'app-employee-list',
+  templateUrl: './employee-list.component.html',
+  styleUrls: ['./employee-list.component.scss']
 })
 
-export class SearchFilterComponent implements OnInit {
+export class EmployeeListComponent implements OnInit {
   alphabets = ['A','B','C','D','E','F','G','H','I','J','K','L','M',
   'N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
   btnStatus = false;

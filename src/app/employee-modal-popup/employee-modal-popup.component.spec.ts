@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FilterNavbarComponent } from './filter-navbar.component';
+import { EmployeeModalPopupComponent } from './employee-modal-popup.component';
 
-describe('ContainerAsideFilterComponent', () => {
-  let component: FilterNavbarComponent;
-  let fixture: ComponentFixture<FilterNavbarComponent>;
+describe('EmployeeModalPopupComponent', () => {
+  let component: EmployeeModalPopupComponent;
+  let fixture: ComponentFixture<EmployeeModalPopupComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FilterNavbarComponent ]
+      declarations: [ EmployeeModalPopupComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FilterNavbarComponent);
+    fixture = TestBed.createComponent(EmployeeModalPopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

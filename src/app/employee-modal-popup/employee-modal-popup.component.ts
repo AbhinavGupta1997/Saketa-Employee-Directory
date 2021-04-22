@@ -2,11 +2,11 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Employee } from '../employee.model';
 
 @Component({
-  selector: 'app-employee-info',
-  templateUrl: './employee-info.component.html',
-  styleUrls: ['./employee-info.component.scss']
+  selector: 'app-employee-modal-popup',
+  templateUrl: './employee-modal-popup.component.html',
+  styleUrls: ['./employee-modal-popup.component.scss']
 })
-export class EmployeeInfoComponent implements OnInit {
+export class EmployeeModalPopupComponent implements OnInit {
 
   @Input() employeeId: string = '';
 

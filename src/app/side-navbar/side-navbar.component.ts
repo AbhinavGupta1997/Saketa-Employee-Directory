@@ -3,11 +3,11 @@ import { Employee } from '../employee.model';
 import { EmployeeService } from '../employee.service';
 
 @Component({
-  selector: 'app-filter-navbar',
-  templateUrl: './filter-navbar.component.html',
-  styleUrls: ['./filter-navbar.component.scss']
+  selector: 'app-side-navbar',
+  templateUrl: './side-navbar.component.html',
+  styleUrls: ['./side-navbar.component.scss']
 })
-export class FilterNavbarComponent implements OnInit {
+export class SideNavbarComponent implements OnInit {
   departments = ['IT','HR','MD','Sales'];
   offices = ['Seattle','India'];
   jobTitles = ['SharePoint Practice Head','.Net Development Lead','Recruiting Expert','BI Developer','Business Analyst'];
