@@ -22,7 +22,7 @@
         </form>
         <button id="add-employee" (click)="changeStatus()">Add Employee</button>
         <div *ngIf="btnStatus == true" id="modal-add-employee" class="modal">
-            <app-add-employee-form (btnStatusEvent)="changeStatusFalse($event)"></app-add-employee-form>
+            <app-add-edit (btnStatusEvent)="changeStatusFalse($event)"></app-add-edit>
         </div>
     </div>
 </div>

@@ -1,6 +1,6 @@
-import { Component, OnInit, Output, EventEmitter, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Employee } from '../employee.model';
-import { EmployeeService } from '../employee.service'
+import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-search-filter',

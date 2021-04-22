@@ -53,3 +53,13 @@
     height: fit-content;
 }
 
+.container-body {
+    display: flex;
+    flex-direction: row;
+}
+
+.container-search {
+    width: calc(100% - 170px);
+    display: flex;
+    flex-direction: column;
+}

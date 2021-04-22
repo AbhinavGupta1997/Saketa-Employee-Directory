@@ -10,8 +10,8 @@ export class Employee {
     public phoneNumber: string;
     public skypeId: string;
 
-    constructor(id: string, args: any) {
-            this.id = id;
+    constructor(args: any) {
+            this.id = args.id;
             this.firstName = args.firstName;
             this.lastName = args.lastName;
             this.preferredName = args.preferredName;

@@ -1,13 +1,14 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Employee } from '../employee.model';
+import { Guid } from 'guid-typescript';
 
 @Component({
-  selector: 'app-add-employee-form',
-  templateUrl: './add-employee-form.component.html',
-  styleUrls: ['./add-employee-form.component.scss']
+  selector: 'app-add-edit',
+  templateUrl: './add-edit.component.html',
+  styleUrls: ['./add-edit.component.scss']
 })
-export class AddEmployeeFormComponent implements OnInit {
+export class AddEditComponent implements OnInit {
   offices = ['Seattle', 'India'];
   departments = ['IT', 'HR', 'MD', 'Sales'];
   jobTitles = ['SharePoint Practice Head', '.Net Development Lead', 'Recruiting Expert', 'BI Developer', 'Business Analyst',
@@ -15,6 +16,7 @@ export class AddEmployeeFormComponent implements OnInit {
   firstName = '';
   lastName = '';
   prefName = '';
+  id: Guid = Guid.create();
 
   employeeData = JSON.parse(localStorage.getItem("employee")!);
 
@@ -25,6 +27,7 @@ export class AddEmployeeFormComponent implements OnInit {
   @Output() btnStatusEvent = new EventEmitter<boolean>();
   
   addEmployeeForm = this.formBuilder.group({
+    id: this.id.toString(),
     firstName: ['', Validators.required],
     lastName: [''],
     preferredName: ['', Validators.required],
@@ -38,7 +41,8 @@ export class AddEmployeeFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) { }
 
-  ngOnInit() {  }
+  ngOnInit() {
+   }
 
   closeForm(value: boolean) {
     this.btnStatusEvent.emit(value);
@@ -51,53 +55,38 @@ export class AddEmployeeFormComponent implements OnInit {
     this.prefName = this.firstName + " " + this.lastName;
   }
 
-  filterEmployee() {
-    this.employee = this.employeeData.filter((employee: Employee) => {
-      return employee.id == this.employeeId;
-    })[0];
-  }
-
   onSubmit() {
+    if (this.addEmployeeForm.valid) {
     //Adding employee form
-    if (this.employeeId == "" || this.employeeId == null) { 
-      if (this.addEmployeeForm.valid) { 
+      if (this.employeeId == "" || this.employeeId == null) { 
+        
         if (this.employeeData == null) {
           this.employeeData = [];
         }
         console.log(this.addEmployeeForm);
-        let id: string = (this.employeeData.length + 1).toString();
 
-        var employeeObj = new Employee(id, this.addEmployeeForm.value);
+        var employeeObj = new Employee(this.addEmployeeForm.value);
         this.employeeData.push(employeeObj);
+        console.log(this.employeeData);
+        localStorage.setItem("employee", JSON.stringify(this.employeeData));        
+      }
+
+      //Editing employee form
+      else {
+        let self = this
+        var empIndex = this.employeeData.findIndex(function(element: Employee) {
+          return element.id == self.employeeId;
+        });
+      
+        if(empIndex > -1){
+          this.employeeData[empIndex] = this.addEmployeeForm.value;
+        }
         console.log(this.employeeData);
         localStorage.setItem("employee", JSON.stringify(this.employeeData));
       }
-
-      else {
-        window.alert("Please fill required details(star-marked) correctly!");
-      }
     }
-
-    //Editing employee form
     else {
-      let self = this
-      var empIndex = this.employeeData.findIndex(function(element: Employee) {
-        return element.id == self.employeeId;
-      });
-    
-      if(empIndex > -1){
-        this.employeeData[empIndex]["firstName"] = this.addEmployeeForm.value.firstName;
-        this.employeeData[empIndex]["lastName"] = this.addEmployeeForm.value.lastName;
-        this.employeeData[empIndex]["preferredName"] = this.addEmployeeForm.value.preferredName;
-        this.employeeData[empIndex]["email"] = this.addEmployeeForm.value.email;
-        this.employeeData[empIndex]["jobTitle"] = this.addEmployeeForm.value.jobTitle;
-        this.employeeData[empIndex]["office"] = this.addEmployeeForm.value.office;
-        this.employeeData[empIndex]["department"] = this.addEmployeeForm.value.department;
-        this.employeeData[empIndex]["phoneNumber"] = this.addEmployeeForm.value.phoneNumber;
-        this.employeeData[empIndex]["skypeId"] = this.addEmployeeForm.value.skypeId;
-      }
-      console.log(this.employeeData);
-      localStorage.setItem("employee", JSON.stringify(this.employeeData));
+      window.alert("Please fill required details(star-marked) correctly!");
     }
   }
 }
