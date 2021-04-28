@@ -37,6 +37,14 @@ export class EmployeeListComponent implements OnInit {
     this.employeeData = this.employees.employeeData;
   }
 
+  ngOnChanges() {
+    this.displayEmployees();
+    this.employees.getEmpData().subscribe(data => this.empData = data);
+    this.filteredEmpData = this.empData;
+
+    this.employeeData = this.employees.employeeData;
+  }
+
   sendData(searchText: string) {
     this.isSearchTextSent = true;
     if(searchText && this.filterByVal === "preferredName") {

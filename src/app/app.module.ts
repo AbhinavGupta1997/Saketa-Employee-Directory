@@ -10,6 +10,10 @@ import { AddEditComponent } from './add-edit/add-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EmployeeModalPopupComponent } from './employee-modal-popup/employee-modal-popup.component';
 import { EmployeeService } from './employee.service';
+import { SharedService } from './shared.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './header/header.component';
+import { EmployeeListFilterComponent } from './employee-list-filter/employee-list-filter.component';
 
 @NgModule({
   declarations: [
@@ -18,15 +22,19 @@ import { EmployeeService } from './employee.service';
     EmployeeListComponent,
     AddEditComponent,
     EmployeeModalPopupComponent,
+    HeaderComponent,
+    EmployeeListFilterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    Ng2SearchPipeModule,  
+    Ng2SearchPipeModule,
+    HttpClientModule
   ],
-  providers: [EmployeeService],
+  providers: [EmployeeService,
+    SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

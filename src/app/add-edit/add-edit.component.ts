@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Employee } from '../employee.model';
 import { Guid } from 'guid-typescript';
+import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-add-edit',
@@ -22,7 +23,8 @@ export class AddEditComponent implements OnInit {
 
   @Input() employeeId: string = '';
   empId = this.employeeId;
-  employee: any;
+  employee: Employee = {id: "", firstName: "", lastName: "", preferredName: "",
+  email: "", skypeId: "", jobTitle: "", office: "", department: "", phoneNumber: ""};
 
   @Output() btnStatusEvent = new EventEmitter<boolean>();
   
@@ -39,10 +41,22 @@ export class AddEditComponent implements OnInit {
     skypeId: ['']
   })
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+    private employees: EmployeeService) { }
 
   ngOnInit() {
-   }
+  }
+
+  ngOnChanges() {
+    if (this.employeeId) {
+      let self = this
+      this.employee = this.employeeData.filter(function(element: Employee) {
+        return element.id == self.employeeId;
+      })[0]
+
+      this.addEmployeeForm.setValue(this.employee);
+    }
+  }
 
   closeForm(value: boolean) {
     this.btnStatusEvent.emit(value);
@@ -68,7 +82,8 @@ export class AddEditComponent implements OnInit {
         var employeeObj = new Employee(this.addEmployeeForm.value);
         this.employeeData.push(employeeObj);
         console.log(this.employeeData);
-        localStorage.setItem("employee", JSON.stringify(this.employeeData));        
+        localStorage.setItem("employee", JSON.stringify(this.employeeData));
+        this.closeForm(false);
       }
 
       //Editing employee form
@@ -83,10 +98,12 @@ export class AddEditComponent implements OnInit {
         }
         console.log(this.employeeData);
         localStorage.setItem("employee", JSON.stringify(this.employeeData));
+        this.closeForm(false);
       }
     }
     else {
       window.alert("Please fill required details(star-marked) correctly!");
     }
+    this.employees.updateEmployee(this.employeeData)
   }
 }
