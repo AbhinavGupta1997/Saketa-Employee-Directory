@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Employee } from '../employee.model';
+import { Employee } from '../../../Models/employee.model';
 
 @Component({
   selector: 'app-employee-modal-popup',
@@ -22,7 +22,7 @@ export class EmployeeModalPopupComponent implements OnInit {
   ngOnInit() {
     this.empData = JSON.parse(localStorage.getItem("employee")!); 
     this.employee = this.empData.filter((employee: Employee) => {
-    return employee.id == this.employeeId;
+    return employee.id === this.employeeId;
   })[0];
   }
 

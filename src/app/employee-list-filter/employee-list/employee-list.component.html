@@ -6,8 +6,8 @@
     <div>
         <form class="form-filter">
             <label>Search</label>
-             <input type="text" #newItem id="inputSearchFilter" name="search" (keyup)="sendData(newItem.value)"
-             placeholder=" Enter any keyword">
+            <input type="text" #newItem id="inputSearchFilter" name="search" (keyup)="sendData(newItem.value)"
+            placeholder=" Enter any keyword">
             <button type="reset" class="search-clear" (click)="onClear()">Clear</button>
             <label for="filter-type" class="filter-by">Filter by</label>
             <select name="filter-type" id="filter-type" (change)="setFilterBy()">
@@ -21,7 +21,7 @@
             </select>
         </form>
         <button id="add-employee" (click)="changeStatus()">Add Employee</button>
-        <div *ngIf="btnStatus == true" id="modal-add-employee" class="modal">
+        <div *ngIf="btnStatus === true" id="modal-add-employee" class="modal">
             <app-add-edit (btnStatusEvent)="changeStatusFalse($event)"></app-add-edit>
         </div>
     </div>
@@ -45,7 +45,7 @@
                     <i class="fas fa-heart"></i></div>
             </div>
         </div>
-        <div *ngIf="displayStatus==true" id="EmpDetails" class="modalProfileCard">
+        <div *ngIf="displayStatus === true" id="EmpDetails" class="modalProfileCard">
             <app-employee-modal-popup [employeeId]="empId" (displayStatusEvent)="changeDisplayFalse($event)"></app-employee-modal-popup>
         </div>
     </div>

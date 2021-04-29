@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from '../employee.model';
-import { EmployeeService } from '../employee.service';
+import { Employee } from '../../Models/employee.model';
+import { EmployeeService } from '../../Services/employee.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -30,14 +30,6 @@ export class EmployeeListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.displayEmployees();
-    this.employees.getEmpData().subscribe(data => this.empData = data);
-    this.filteredEmpData = this.empData;
-
-    this.employeeData = this.employees.employeeData;
-  }
-
-  ngOnChanges() {
     this.displayEmployees();
     this.employees.getEmpData().subscribe(data => this.empData = data);
     this.filteredEmpData = this.empData;
@@ -82,7 +74,7 @@ export class EmployeeListComponent implements OnInit {
         return employee.skypeId.toLowerCase().includes(searchText.toLowerCase());
       })
     }
-    else if (searchText == "" || searchText == null) {
+    else if (searchText === "" || searchText === null) {
       employee = this.employees.employeeData;
     }
     else {

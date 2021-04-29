@@ -1,0 +1,89 @@
+<div class="modal-content">
+    <span class="close" (click)="closeForm(false)">&times;</span>
+    <form id="add-emp" [formGroup]="addEmployeeForm" (ngSubmit)="onSubmit()">
+        <h1>Add Employee Details</h1>
+        <p>Please fill all the details</p>
+        <hr>
+        <div>
+            <div class="form-group">
+                <label for="firstName"><b>First Name</b><span class="req-data">*</span></label>
+                <input id="firstName" type="text" formControlName="firstName" name="firstName"
+                placeholder="Enter First Name" (input)="updateName($event)" required>
+
+                <span *ngIf="!firstName.valid && (firstName.touched || userSubmitted)"
+                class="error-block">
+                    <span *ngIf="firstName.hasError('required')">
+                    First Name is required
+                    </span>
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="lastName"><b>Last Name</b></label>
+                <input id="lastName" type="text" formControlName="lastName" name="lastName"
+                placeholder="Enter Last Name" (input)="updateName($event)">
+            </div>
+            <div class="form-group">
+                <label for="preferredName"><b>Preferred Name</b><span class="req-data">*</span></label>
+                <input id="preferredName" type="text" formControlName="preferredName"
+                name="preferredName" [(ngModel)]="prefName" required>
+
+                <span *ngIf="!preferredName.valid && (preferredName.touched || userSubmitted)"
+                class="error-block">
+                    <span *ngIf="preferredName.hasError('required')">
+                    Preferred Name is required
+                    </span>
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="email"><b>Email</b><span class="req-data">*</span></label>
+                <input id="email" type="email" formControlName="email" name="email" placeholder="Enter Email ID" required>
+
+                <span *ngIf="!email.valid && (email.touched || userSubmitted)"
+                class="error-block">
+                    <span *ngIf="email.hasError('required')">
+                    Email is required
+                    </span>
+                    <span *ngIf="email.hasError('email')">
+                    Please provide valid email id
+                    </span>
+                </span>
+            </div>
+            <label for="jobTitle"><b>Job Title</b><span class="req-data">*</span></label>
+            <select name="jobTitle" id="jobTitle" formControlName="jobTitle">
+                <option [value]="jobTitle" *ngFor="let jobTitle of jobTitles">{{ jobTitle }}</option>
+            </select>
+            <br>
+            <label for="office"><b>Office</b><span class="req-data">*</span></label>
+            <select name="office" id="office" formControlName="office">
+                <option [value]="office" *ngFor="let office of offices">{{ office }}</option>
+            </select>
+            <br>
+            <label for="department"><b>Department</b><span class="req-data">*</span></label>
+            <select name="department" id="department" formControlName="department">
+                <option [value]="department" *ngFor="let department of departments">{{ department }}</option>
+            </select>
+            <br>
+            <div class="form-group">
+                <label for="phoneNumber"><b>Phone Number</b><span class="req-data">*</span></label>
+                <input id="phoneNumber" type="tel" formControlName="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number" minlength="10" maxlength="10" required>
+
+                <span *ngIf="!phoneNumber.valid && (phoneNumber.touched || userSubmitted)"
+                class="error-block">
+                    <span *ngIf="phoneNumber.hasError('required')">
+                    Phone Number is required
+                    </span>
+                    <span *ngIf="phoneNumber.hasError('minlength') || phoneNumber.hasError('maxlength')">
+                    Phone Number should be of 10 digits
+                    </span>
+                </span>
+            </div>
+            <label for="skypeId"><b>Skype ID</b></label>
+            <input id="skypeId" type="text" formControlName="skypeId" name="skypeId" placeholder="Enter Skype ID">
+        </div>
+        <!-- <p>{{ employeeId }}</p> -->
+        <span class="add-clear">
+            <button type="submit" id="btn-add-emp">Add</button>
+            <button type="reset">Clear</button>
+        </span>
+    </form>
+</div>

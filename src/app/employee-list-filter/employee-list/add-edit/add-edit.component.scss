@@ -1,0 +1,85 @@
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    // width: fit-content;
+    width: 400px;
+
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover, .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    h1 {
+        font-size: 21px;
+        color: #676666;
+    }
+
+    p {
+        font-size: 12px;
+    }
+
+    hr {
+        margin-bottom: 10px;
+        color: #676666;
+    }
+
+    div {
+        height: 430px;
+        overflow-y: auto;
+        margin-bottom: 30px;
+
+        .form-group {
+            height: fit-content;
+            margin: 0;
+            margin-bottom: 10px;
+
+            span {
+                span {
+                    font-size: 11px;
+                    color: red;
+                }
+            }
+        }
+    }
+
+    label {
+        font-size: 15px;
+        color: #676666;
+    }
+
+    .req-data {
+        color: red;
+    }
+
+    input, select {
+        height: auto;
+        width: 100%;
+        padding: 10px;
+        margin-top: 2px;
+        border: none;
+        background: #f1f1f1;
+    }
+
+    .add-clear {
+        button {
+            height: 28px;
+            width: 60px;
+            margin-left: 5px;
+            background-color: #00B1FC;
+            border: none;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+    }
+}

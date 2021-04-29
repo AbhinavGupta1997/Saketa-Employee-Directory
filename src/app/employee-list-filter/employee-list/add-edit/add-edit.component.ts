@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Employee } from '../employee.model';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Employee } from '../../../Models/employee.model';
 import { Guid } from 'guid-typescript';
-import { EmployeeService } from '../employee.service';
+import { EmployeeService } from '../../../Services/employee.service';
 
 @Component({
   selector: 'app-add-edit',
@@ -14,8 +14,8 @@ export class AddEditComponent implements OnInit {
   departments = ['IT', 'HR', 'MD', 'Sales'];
   jobTitles = ['SharePoint Practice Head', '.Net Development Lead', 'Recruiting Expert', 'BI Developer', 'Business Analyst',
   'Operations Manager', 'Product Manager', 'Network Engineer', 'Talent Magnet Jr.', 'Software Engineer', 'UI Designer'];
-  firstName = '';
-  lastName = '';
+  fName = '';
+  lName = '';
   prefName = '';
   id: Guid = Guid.create();
 
@@ -23,8 +23,8 @@ export class AddEditComponent implements OnInit {
 
   @Input() employeeId: string = '';
   empId = this.employeeId;
-  employee: Employee = {id: "", firstName: "", lastName: "", preferredName: "",
-  email: "", skypeId: "", jobTitle: "", office: "", department: "", phoneNumber: ""};
+  employee: any;
+  userSubmitted: boolean = true;
 
   @Output() btnStatusEvent = new EventEmitter<boolean>();
   
@@ -45,13 +45,9 @@ export class AddEditComponent implements OnInit {
     private employees: EmployeeService) { }
 
   ngOnInit() {
-  }
-
-  ngOnChanges() {
     if (this.employeeId) {
-      let self = this
-      this.employee = this.employeeData.filter(function(element: Employee) {
-        return element.id == self.employeeId;
+      this.employee = this.employeeData.filter((element: Employee) => {
+        return element.id === this.employeeId;
       })[0]
 
       this.addEmployeeForm.setValue(this.employee);
@@ -64,17 +60,18 @@ export class AddEditComponent implements OnInit {
 
   //Pre-populating Preferred Name with First name & Last name
   updateName(event: Event) {
-    this.firstName = (<HTMLInputElement>document.getElementById("firstName")).value;
-    this.lastName = (<HTMLInputElement>document.getElementById("lastName")).value;
-    this.prefName = this.firstName + " " + this.lastName;
+    this.fName = (<HTMLInputElement>document.getElementById("firstName")).value;
+    this.lName = (<HTMLInputElement>document.getElementById("lastName")).value;
+    this.prefName = this.fName + " " + this.lName;
   }
 
   onSubmit() {
+    this.userSubmitted = true;
     if (this.addEmployeeForm.valid) {
     //Adding employee form
-      if (this.employeeId == "" || this.employeeId == null) { 
+      if (this.employeeId === "" || this.employeeId === null) { 
         
-        if (this.employeeData == null) {
+        if (this.employeeData === null) {
           this.employeeData = [];
         }
         console.log(this.addEmployeeForm);
@@ -88,9 +85,8 @@ export class AddEditComponent implements OnInit {
 
       //Editing employee form
       else {
-        let self = this
-        var empIndex = this.employeeData.findIndex(function(element: Employee) {
-          return element.id == self.employeeId;
+        var empIndex = this.employeeData.findIndex((element: Employee) => {
+          return element.id === this.employeeId;
         });
       
         if(empIndex > -1){
@@ -101,9 +97,35 @@ export class AddEditComponent implements OnInit {
         this.closeForm(false);
       }
     }
-    else {
-      window.alert("Please fill required details(star-marked) correctly!");
-    }
+    this.userSubmitted = false;
     this.employees.updateEmployee(this.employeeData)
+  }
+
+  get firstName() { 
+    return this.addEmployeeForm.get('firstName') as FormControl; 
+  }
+
+  get preferredName() { 
+    return this.addEmployeeForm.get('preferredName') as FormControl; 
+  }
+
+  get email() { 
+    return this.addEmployeeForm.get('email') as FormControl; 
+  }
+
+  get phoneNumber() { 
+    return this.addEmployeeForm.get('phoneNumber') as FormControl; 
+  }
+
+  get department() { 
+    return this.addEmployeeForm.get('department') as FormControl; 
+  }
+
+  get office() { 
+    return this.addEmployeeForm.get('office') as FormControl; 
+  }
+
+  get jobTitle() { 
+    return this.addEmployeeForm.get('jobTitle') as FormControl; 
   }
 }

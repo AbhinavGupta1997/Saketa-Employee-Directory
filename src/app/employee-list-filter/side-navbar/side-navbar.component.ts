@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
-import { Employee } from '../employee.model';
-import { EmployeeService } from '../employee.service';
+import { Employee } from '../../Models/employee.model';
+import { EmployeeService } from '../../Services/employee.service';
 
 @Component({
   selector: 'app-side-navbar',
@@ -28,7 +28,7 @@ export class SideNavbarComponent implements OnInit {
 
   applyFilter(value: string) {
     var employee = this.employeeData.filter((employee: any) =>
-      employee.department == value || employee.jobTitle == value || employee.office == value);
+      employee.department === value || employee.jobTitle === value || employee.office === value);
     this.employees.updateEmployee(employee);
 
 	console.log(this.employees.employeeData);
@@ -45,6 +45,10 @@ export class SideNavbarComponent implements OnInit {
     this.jobTitlesViewMoreStatus = false;
     this.viewLessBtnStatus = false;
   }
+
+  // getCount(property: string, value: string) {
+  //   return this.employeeData.filter((employee: Employee) => employee[property] === value).length;
+  // }
 
   getCountDepartment(dept: string) {
     return this.employeeData.filter((employee: Employee) => employee.department === dept).length;
