@@ -24,7 +24,7 @@ export class AddEditComponent implements OnInit {
   @Input() employeeId: string = '';
   empId = this.employeeId;
   employee: any;
-  userSubmitted: boolean = true;
+  userSubmitted: boolean = false;
 
   @Output() btnStatusEvent = new EventEmitter<boolean>();
   
@@ -96,8 +96,9 @@ export class AddEditComponent implements OnInit {
         localStorage.setItem("employee", JSON.stringify(this.employeeData));
         this.closeForm(false);
       }
+      this.userSubmitted = false;
     }
-    this.userSubmitted = false;
+    // this.userSubmitted = false;
     this.employees.updateEmployee(this.employeeData)
   }
 
