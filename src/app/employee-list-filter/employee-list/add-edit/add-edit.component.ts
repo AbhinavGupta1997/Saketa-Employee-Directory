@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Employee } from '../../../Models/employee.model';
 import { Guid } from 'guid-typescript';
 import { EmployeeService } from '../../../Services/employee.service';
+import { Employee1 } from 'src/app/Models/employee1.model';
 
 @Component({
   selector: 'app-add-edit',
@@ -21,8 +22,8 @@ export class AddEditComponent implements OnInit {
 
   employeeData = JSON.parse(localStorage.getItem("employee")!);
 
-  @Input() employeeId: string = '';
-  empId = this.employeeId;
+  @Input() employeeId: number = 0;
+  // empId = this.employeeId;
   employee: any;
   userSubmitted: boolean = false;
 
@@ -46,8 +47,8 @@ export class AddEditComponent implements OnInit {
 
   ngOnInit() {
     if (this.employeeId) {
-      this.employee = this.employeeData.filter((element: Employee) => {
-        return element.id === this.employeeId;
+      this.employee = this.employeeData.filter((element: Employee1) => {
+        return element.EmployeeId === this.employeeId;
       })[0]
 
       this.addEmployeeForm.setValue(this.employee);
@@ -69,7 +70,7 @@ export class AddEditComponent implements OnInit {
     this.userSubmitted = true;
     if (this.addEmployeeForm.valid) {
     //Adding employee form
-      if (this.employeeId === "" || this.employeeId === null) { 
+      if (this.employeeId === 0 || this.employeeId === null) { 
         
         if (this.employeeData === null) {
           this.employeeData = [];
@@ -85,8 +86,8 @@ export class AddEditComponent implements OnInit {
 
       //Editing employee form
       else {
-        var empIndex = this.employeeData.findIndex((element: Employee) => {
-          return element.id === this.employeeId;
+        var empIndex = this.employeeData.findIndex((element: Employee1) => {
+          return element.EmployeeId === this.employeeId;
         });
       
         if(empIndex > -1){

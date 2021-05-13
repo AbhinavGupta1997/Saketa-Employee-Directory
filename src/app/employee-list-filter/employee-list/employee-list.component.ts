@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Employee1 } from 'src/app/Models/employee1.model';
 import { Employee } from '../../Models/employee.model';
 import { EmployeeService } from '../../Services/employee.service';
 
@@ -19,9 +20,11 @@ export class EmployeeListComponent implements OnInit {
 
   filteredEmpData: any;
   displayStatus: boolean = false;
-  empId: string ="";
+  empId: number = 0;
 
   empData: Employee[] = [];
+
+  employeees: Employee1[] =[];
 
   constructor(private employees: EmployeeService) { 
   }
@@ -30,11 +33,18 @@ export class EmployeeListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.displayEmployees();
-    this.employees.getEmpData().subscribe(data => this.empData = data);
-    this.filteredEmpData = this.empData;
+    // this.displayEmployees();
+    // this.employees.getEmpData().subscribe(data => this.empData = data);
+    // this.filteredEmpData = this.empData;
 
-    this.employeeData = this.employees.employeeData;
+    // this.employeeData = this.employees.employeeData;
+    this.getEmployees();
+    
+  }
+
+  getEmployees(): void {
+    this.employees.getEmployees()
+    .subscribe(employeees => this.employeees = employeees);
   }
 
   sendData(searchText: string) {
@@ -112,7 +122,7 @@ export class EmployeeListComponent implements OnInit {
     this.btnStatus = newVal;
   }
 
-  changeDisplayStatus(value: string) {
+  changeDisplayStatus(value: number) {
     this.displayStatus = true;
     this.empId = value;
     console.log(this.empId);
