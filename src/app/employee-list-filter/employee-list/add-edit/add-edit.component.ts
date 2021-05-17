@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Employee } from '../../../Models/employee.model';
 import { Guid } from 'guid-typescript';
 import { EmployeeService } from '../../../Services/employee.service';
+import { Employee1 } from 'src/app/Models/employee1.model';
 
 @Component({
   selector: 'app-add-edit',
@@ -17,19 +18,20 @@ export class AddEditComponent implements OnInit {
   fName = '';
   lName = '';
   prefName = '';
-  id: Guid = Guid.create();
+  // id: Guid = Guid.create();
 
   employeeData = JSON.parse(localStorage.getItem("employee")!);
+  employeees: Employee1[] =[];
 
-  @Input() employeeId: string = '';
-  empId = this.employeeId;
+  @Input() employeeId: number = 0;
+  // empId = this.employeeId;
   employee: any;
   userSubmitted: boolean = false;
 
   @Output() btnStatusEvent = new EventEmitter<boolean>();
   
   addEmployeeForm = this.formBuilder.group({
-    id: this.id.toString(),
+    // id: this.id.toString(),
     firstName: ['', Validators.required],
     lastName: [''],
     preferredName: ['', Validators.required],
@@ -45,13 +47,19 @@ export class AddEditComponent implements OnInit {
     private employees: EmployeeService) { }
 
   ngOnInit() {
+    this.getEmployees();
     if (this.employeeId) {
-      this.employee = this.employeeData.filter((element: Employee) => {
-        return element.id === this.employeeId;
+      this.employee = this.employeeData.filter((element: Employee1) => {
+        return element.EmployeeId === this.employeeId;
       })[0]
 
       this.addEmployeeForm.setValue(this.employee);
     }
+  }
+
+  getEmployees(): void {
+    this.employees.getEmployees()
+    .subscribe(employeees => this.employeees = employeees);
   }
 
   closeForm(value: boolean) {
@@ -68,8 +76,8 @@ export class AddEditComponent implements OnInit {
   onSubmit() {
     this.userSubmitted = true;
     if (this.addEmployeeForm.valid) {
-    //Adding employee form
-      if (this.employeeId === "" || this.employeeId === null) { 
+      //Adding employee form
+      if (this.employeeId === 0 || this.employeeId === null) { 
         
         if (this.employeeData === null) {
           this.employeeData = [];
@@ -77,6 +85,7 @@ export class AddEditComponent implements OnInit {
         console.log(this.addEmployeeForm);
 
         var employeeObj = new Employee(this.addEmployeeForm.value);
+        // var employeeObj = new Employee(this.addEmployeeForm.value);
         this.employeeData.push(employeeObj);
         console.log(this.employeeData);
         localStorage.setItem("employee", JSON.stringify(this.employeeData));
@@ -85,8 +94,8 @@ export class AddEditComponent implements OnInit {
 
       //Editing employee form
       else {
-        var empIndex = this.employeeData.findIndex((element: Employee) => {
-          return element.id === this.employeeId;
+        var empIndex = this.employeeData.findIndex((element: Employee1) => {
+          return element.EmployeeId === this.employeeId;
         });
       
         if(empIndex > -1){
@@ -100,6 +109,14 @@ export class AddEditComponent implements OnInit {
     }
     // this.userSubmitted = false;
     this.employees.updateEmployee(this.employeeData)
+  }
+
+  addEmployee(FirstName: string, LastName: string, PreferredName: string, Email: string, PhoneNumber: string,
+    SkypeId: string, JobTitleId: number, DepartmentId: number, OfficeId: number): void {
+    this.employees.addEmployee({ FirstName, LastName, PreferredName, Email, PhoneNumber, SkypeId, JobTitleId, DepartmentId, OfficeId } as Employee1)
+    .subscribe(employee => {
+      this.employeees.push(employee);
+    });
   }
 
   get firstName() { 

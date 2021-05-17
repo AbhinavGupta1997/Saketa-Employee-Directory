@@ -6,35 +6,35 @@
         <div class="modalProfileNameContainer">
             <div>
                 <label>First Name: </label>
-                <div class="modalFName values">{{ employee.firstName }}</div>
+                <div class="modalFName values">{{ employee.FirstName }}</div>
             </div>
             <div>
                 <label>Last Name: </label>
-                <div class="modalLName values">{{ employee.lastName }}</div>
+                <div class="modalLName values">{{ employee.LastName }}</div>
             </div>
             <div>
                 <label>Preferred Name: </label>
-                <div class="modalPName values">{{ employee.preferredName }}</div>
+                <div class="modalPName values">{{ employee.PreferredName }}</div>
             </div>
         </div>
     </div>
     <div>
         <h2>Contact</h2>
         <label>Email: </label>
-        <div class="modalEmail values">{{ employee.email }}</div>
+        <div class="modalEmail values">{{ employee.Email }}</div>
         <label>Phone: </label>
-        <div class="modalPhone values">{{ employee.phoneNumber }}</div>
+        <div class="modalPhone values">{{ employee.PhoneNumber }}</div>
         <label>Skype: </label>
-        <div class="modalSID values">{{ employee.skypeId }}</div>
+        <div class="modalSID values">{{ employee.SkypeId }}</div>
     </div>
     <div>
         <h2>Job Description</h2>
         <label>Job-Title: </label>
-        <div class="modalJTitle values">{{ employee.jobTitle }}</div>
+        <div class="modalJTitle values">{{ employee.JobTitleId }}</div>
         <label>Department: </label>
-        <div class="modalDept values">{{ employee.department }}</div>
+        <div class="modalDept values">{{ employee.DepartmentId }}</div>
         <label>Location: </label>
-        <div class="modalOffice values">{{ employee.office }}</div>
+        <div class="modalOffice values">{{ employee.OfficeId }}</div>
     </div>
     <button id="modalButton" (click)="changeEditStatus()">Edit</button>
     <button (click)="changeDisplayStatus(false)">Close</button>
