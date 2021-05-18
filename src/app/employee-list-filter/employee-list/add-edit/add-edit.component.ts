@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Employee } from '../../../Models/employee.model';
-import { Guid } from 'guid-typescript';
+// import { Guid } from 'guid-typescript';
 import { EmployeeService } from '../../../Services/employee.service';
 import { Employee1 } from 'src/app/Models/employee1.model';
 
@@ -49,11 +49,12 @@ export class AddEditComponent implements OnInit {
   ngOnInit() {
     this.getEmployees();
     if (this.employeeId) {
-      this.employee = this.employeeData.filter((element: Employee1) => {
+      this.employee = this.employeees.filter((element: Employee1) => {
         return element.EmployeeId === this.employeeId;
       })[0]
 
       this.addEmployeeForm.setValue(this.employee);
+      console.log(this.employee)
     }
   }
 

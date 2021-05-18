@@ -17,6 +17,17 @@ export class DepartmentService {
     return this.http.get<Department[]>(this.APIUrl + '/Department');
   }
 
+  // getDepartmentById(id: number): Observable<Department> {
+  //   const url = `${this.APIUrl}/Department/${id}`;
+  //   return this.http.get<Department>(url);
+  // }
+
+  getDepartmentById(id: number): Observable<string> {
+    // const url = `${this.APIUrl}/Department/1`;
+    const url = `${this.APIUrl}/Department/${id}`;
+    return this.http.get<string>(url);
+  }
+
   getDepartmentCount(): Observable<number> {
     const url = `${this.APIUrl}/Department/GetDepartmentCount/1`;
     // const url = `${this.APIUrl}/Department/GetDepartmentCount/${id}`;

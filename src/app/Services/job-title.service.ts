@@ -16,6 +16,11 @@ export class JobTitleService {
     return this.http.get<JobTitle[]>(this.APIUrl + '/JobTitle');
   }
 
+  getJobTitleById(id: number): Observable<JobTitle> {
+    const url = `${this.APIUrl}/JobTitle/${id}`;
+    return this.http.get<JobTitle>(url);
+  }
+
   getJobTitleCount(id: number): Observable<number> {
     const url = `${this.APIUrl}/JobTitle/GetJobTitleCount/${id}`;
     return this.http.get<number>(url);

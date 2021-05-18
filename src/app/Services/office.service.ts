@@ -16,6 +16,11 @@ export class OfficeService {
     return this.http.get<Office[]>(this.APIUrl + '/Office');
   }
 
+  getOfficeById(id: number): Observable<Office> {
+    const url = `${this.APIUrl}/Office/${id}`;
+    return this.http.get<Office>(url);
+  }
+
   getOfficeCount(id: number): Observable<number> {
     const url = `${this.APIUrl}/Office/GetOfficeCount/${id}`;
     return this.http.get<number>(url);

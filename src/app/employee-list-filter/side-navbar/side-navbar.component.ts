@@ -8,6 +8,7 @@ import { EmployeeService } from '../../Services/employee.service';
 import { SharedService } from '../../Services/shared.service'
 import { OfficeService } from 'src/app/Services/office.service';
 import { JobTitleService } from 'src/app/Services/job-title.service';
+import { Employee1 } from 'src/app/Models/employee1.model';
 
 @Component({
   selector: 'app-side-navbar',
@@ -24,7 +25,8 @@ export class SideNavbarComponent implements OnInit {
   jobTitlesViewMoreStatus = false;
   viewLessBtnStatus = false;
 
-  employeeData = JSON.parse(localStorage.getItem("employee")!);
+  employeeData: Employee1[] = [];
+  // employeeData = JSON.parse(localStorage.getItem("employee")!);
 
   filterApplied = '';
   departmentCount!: number;
@@ -42,18 +44,19 @@ export class SideNavbarComponent implements OnInit {
     private jobTitleService: JobTitleService) { }
 
   ngOnInit(): void {
+    this.getEmployees();
     this.getDepartments();
     this.getOffices();
     this.getJobTitles();
     this.getDepartmentCount();
   }
 
-  applyFilter(value: string) {
+  applyFilter(value: number) {
     var employee = this.employeeData.filter((employee: any) =>
-      employee.department === value || employee.jobTitle === value || employee.office === value);
+      employee.DepartmentId === value || employee.JobTitleId === value || employee.OfficeId === value);
     this.employees.updateEmployee(employee);
 
-	console.log(this.employees.employeeData);
+	// console.log(this.employees.employeeData);
   }
 
   onViewMoreClick() {
@@ -74,6 +77,11 @@ export class SideNavbarComponent implements OnInit {
   // getDepartmentCount(id: number) {
   //   return this.sharedService.getDepartmentCount(id);
   // }
+
+  getEmployees(): void {
+    this.employees.getEmployees()
+    .subscribe(employees => {this.employeeData = employees});
+  }
 
   getDepartments(): void {
     this.departmentService.getDepartments()
@@ -114,8 +122,8 @@ export class SideNavbarComponent implements OnInit {
   //   return this.employeeData.filter((employee: Employee) => employee.office === office).length;
   // }
 
-  getCountJobTitle(jTitle: string) {
-    return this.employeeData.filter((employee: Employee) => employee.jobTitle === jTitle).length;
-  }
+  // getCountJobTitle(jTitle: string) {
+    // return this.employeeData.filter((employee: Employee) => employee.jobTitle === jTitle).length;
+  // }
 
 }

@@ -30,14 +30,17 @@
     <b>Note: </b>Please use the advanced filter options to refine your results.
 </p>
 <div class="display-card-container">
-    <div *ngFor="let emp of employeees" class="wd-24">
+    <div *ngFor="let emp of filteredEmpData" class="wd-24">
+        <!-- {changeDisplayStatus(emp.EmployeeId)} -->
         <div (click)="changeDisplayStatus(emp.EmployeeId)">
             <!-- (click)="changeDisplayStatus(emp.EmployeeId)" -->
             <img src="assets\Images\User image.jpg">
             <div class="wd-calc">
                 <div class="displayName">{{ emp.PreferredName }}</div>
                 <div class="displayJobTitle">{{ emp.JobTitleId }}</div>
+                <!-- <div class="displayDept">{{ getDepartment(emp.DepartmentId) }} Department</div> -->
                 <div class="displayDept">{{ emp.DepartmentId }} Department</div>
+                <!-- getDepartment(emp.DepartmentId) -->
                 <div>
                     <i class="fas fa-phone-square-alt"></i>
                     <i class="fas fa-envelope"></i>

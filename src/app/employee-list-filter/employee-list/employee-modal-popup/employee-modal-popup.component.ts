@@ -19,7 +19,7 @@ export class EmployeeModalPopupComponent implements OnInit {
 
   empData: Employee1[] = [];
   employeees: Employee1[] = [];
-  employee: any;
+  employee!: Employee1;
 
   // employee1!: Employee1;
 

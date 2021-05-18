@@ -1,6 +1,6 @@
 <section>
     <h3>Departments</h3>
-    <div *ngFor="let department of departments" (click)="applyFilter(department.DepartmentName)">{{ department.DepartmentName }}(<p>{{ departmentCount }}</p>)</div>
+    <div *ngFor="let department of departments" (click)="applyFilter(department.DepartmentId)">{{ department.DepartmentName }}(<p>{{ departmentCount }}</p>)</div>
     <!-- <div *ngFor="let department of departments" (click)="getDepartmentCount(department.DepartmentId)">{{ department.DepartmentName }}(<p></p>)</div> -->
 
     <!-- getDepartmentCount(department.DepartmentId) -->
@@ -8,7 +8,7 @@
 </section>
 <section>
     <h3>Offices</h3>
-    <div *ngFor="let office of offices" (click)="applyFilter(office.OfficeLocation)">{{ office.OfficeLocation }}(<p></p>)</div>
+    <div *ngFor="let office of offices" (click)="applyFilter(office.OfficeId)">{{ office.OfficeLocation }}(<p></p>)</div>
     <!-- getOfficeCount(office.OfficeId) -->
 </section>
 <section>
@@ -16,7 +16,7 @@
     <!-- <div *ngFor="let jobTitle of jobTitles" (click)="applyFilter(jobTitle.JobTitleName)">{{ jobTitle.JobTitleName }}(<p>{{ getJobTitleCount(jobTitle.JobTitleId) }}</p>)</div> -->
     <div id="viewMore" *ngIf="viewMoreBtnStatus === true" (click)="onViewMoreClick()">view more</div>
     <div *ngIf="jobTitlesViewMoreStatus === true">
-        <div *ngFor="let jobTitleMore of jobTitlesViewMore" (click)="applyFilter(jobTitleMore)">{{ jobTitleMore }}(<p>{{ getCountJobTitle(jobTitleMore) }}</p>)</div>
+        <!-- <div *ngFor="let jobTitleMore of jobTitlesViewMore" (click)="applyFilter(jobTitleMore)">{{ jobTitleMore }}(<p>{{ getCountJobTitle(jobTitleMore) }}</p>)</div> -->
     </div>
     <div id="viewLess" *ngIf="viewLessBtnStatus === true" (click)="onViewLessClick()">view less</div>
 </section>
