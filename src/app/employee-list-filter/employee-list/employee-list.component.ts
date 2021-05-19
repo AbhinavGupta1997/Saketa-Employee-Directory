@@ -44,6 +44,7 @@ export class EmployeeListComponent implements OnInit {
   isSearchTextSent = false;
 
   ngOnInit() {
+    this.getOffices();
     this.getDepartments();
     this.getJobTitles();
     this.getEmployees();
@@ -98,21 +99,21 @@ export class EmployeeListComponent implements OnInit {
     else if(searchText && this.filterByVal === "department") {
       var deptId = this.departments.find((department: Department) =>
       department.DepartmentName.toLowerCase().includes(searchText.toLowerCase()))?.DepartmentId;
-      employee = this.filteredEmpData.filter((employee: Employee) => {
+      employee = this.empData.filter((employee: Employee) => {
         return employee.DepartmentId === deptId;
       })
     }
     else if(searchText && this.filterByVal === "jobTitle") {
       var jobTitleId = this.jobTitles.find((jTitle: JobTitle) =>
       jTitle.JobTitleName.toLowerCase().includes(searchText.toLowerCase()))?.JobTitleId;
-      employee = this.filteredEmpData.filter((employee: Employee) => {
+      employee = this.empData.filter((employee: Employee) => {
         return employee.JobTitleId === jobTitleId;
       })
     }
     else if(searchText && this.filterByVal === "office") {
       var officeId = this.offices.find((office: Office) =>
       office.OfficeLocation.toLowerCase().includes(searchText.toLowerCase()))?.OfficeId;
-      employee = this.filteredEmpData.filter((employee: Employee) => {
+      employee = this.empData.filter((employee: Employee) => {
         return employee.OfficeId === officeId;
       })
     }
@@ -132,7 +133,7 @@ export class EmployeeListComponent implements OnInit {
     else {
       employee = this.employeees;
     }
-    console.log(searchText);
+    // console.log(searchText);
 
     this.employees.updateEmployee(employee);
     this.employees.employee.next(searchText);
