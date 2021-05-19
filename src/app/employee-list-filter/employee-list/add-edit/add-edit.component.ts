@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmployeeService } from '../../../Services/employee.service';
-import { Employee1 } from 'src/app/Models/employee1.model';
+import { Employee } from 'src/app/Models/employee.model';
 import { DepartmentService } from 'src/app/Services/department.service';
 import { OfficeService } from 'src/app/Services/office.service';
 import { JobTitleService } from 'src/app/Services/job-title.service';
@@ -23,7 +23,7 @@ export class AddEditComponent implements OnInit {
   lName = '';
   prefName = '';
 
-  employeees: Employee1[] = [];
+  employeees: Employee[] = [];
 
   @Input() employeeId: number = 0;
   employee: any;
@@ -36,7 +36,7 @@ export class AddEditComponent implements OnInit {
     lastName: [''],
     preferredName: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    jobTitle: [''],
+    jobTitle: ['', Validators.required],
     office: [''],
     department: [''],
     phoneNumber: ['',[Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
@@ -61,7 +61,7 @@ export class AddEditComponent implements OnInit {
     .subscribe(employeees => {
       this.employeees = employeees;
       if (this.employeeId) {
-        this.employee = employeees.filter((element: Employee1) => {
+        this.employee = employeees.filter((element: Employee) => {
           return element.EmployeeId === this.employeeId;
         })[0]
   
@@ -108,7 +108,7 @@ export class AddEditComponent implements OnInit {
 
         console.log(this.addEmployeeForm);
 
-        var employeeObj = new Employee1(this.addEmployeeForm.value);
+        var employeeObj = new Employee(this.addEmployeeForm.value);
         this.employees.addEmployee(employeeObj)
         .subscribe(employee => this.employeees.push(employee));
         console.log(this.employeees);
@@ -117,12 +117,12 @@ export class AddEditComponent implements OnInit {
 
       //Editing employee form
       else {
-        var empIndex = this.employeees.findIndex((element: Employee1) => {
+        var empIndex = this.employeees.findIndex((element: Employee) => {
           return element.EmployeeId === this.employeeId;
         });
       
         if(empIndex > -1){
-          var employeeObj = new Employee1(this.addEmployeeForm.value);
+          var employeeObj = new Employee(this.addEmployeeForm.value);
           this.employeees[empIndex] = employeeObj;
         }
         console.log(this.employeees);

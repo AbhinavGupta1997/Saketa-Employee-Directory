@@ -13,6 +13,9 @@ import { EmployeeService } from './Services/employee.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { EmployeeListFilterComponent } from './employee-list-filter/employee-list-filter.component';
+import { DepartmentService } from './Services/department.service';
+import { OfficeService } from './Services/office.service';
+import { JobTitleService } from './Services/job-title.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { EmployeeListFilterComponent } from './employee-list-filter/employee-lis
     Ng2SearchPipeModule,
     HttpClientModule
   ],
-  providers: [EmployeeService],
+  providers: [EmployeeService,
+    DepartmentService,
+    OfficeService,
+    JobTitleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

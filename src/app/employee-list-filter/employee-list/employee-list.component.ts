@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee1 } from 'src/app/Models/employee1.model';
-import { Employee } from '../../Models/employee.model';
+import { Employee } from 'src/app/Models/employee.model';
 import { Department } from 'src/app/Models/department.model';
 import { Office } from 'src/app/Models/office.model';
 import { JobTitle } from 'src/app/Models/job-title.model';
@@ -27,10 +26,10 @@ export class EmployeeListComponent implements OnInit {
   displayStatus: boolean = false;
   empId: number = 0;
 
-  empData: Employee1[] = [];
+  empData: Employee[] = [];
 
 
-  employeees: Employee1[] = [];
+  employeees: Employee[] = [];
   departments: Department[] = [];
   offices: Office[] = [];
   jobTitles: JobTitle[] = [];
@@ -46,12 +45,12 @@ export class EmployeeListComponent implements OnInit {
 
   ngOnInit() {
     this.getDepartments();
+    this.getJobTitles();
     this.getEmployees();
     this.employees.getEmpData().subscribe(data => this.filteredEmpData = data);
-
   }
 
-  filteredEmpData: Employee1[] = this.employeees;
+  filteredEmpData: Employee[] = this.employeees;
 
   getEmployees(): void {
     this.employees.getEmployees()
@@ -64,6 +63,14 @@ export class EmployeeListComponent implements OnInit {
     this.departmentService.getDepartments()
     .subscribe(departments => {this.departments = departments;
   });
+  }
+
+  getDepartment(id: number): any {
+    return this.departments.find((dept: Department) => dept.DepartmentId === id)?.DepartmentName;
+  }
+
+  getJobTitle(id: number): any {
+    return this.jobTitles.find((jTitle: JobTitle) => jTitle.JobTitleId === id)?.JobTitleName;
   }
 
   getOffices(): void {
@@ -79,37 +86,37 @@ export class EmployeeListComponent implements OnInit {
   sendData(searchText: string) {
     this.isSearchTextSent = true;
     if(searchText && this.filterByVal === "preferredName") {
-      var employee = this.empData.filter((employee: Employee1) => {
+      var employee = this.empData.filter((employee: Employee) => {
         return employee.PreferredName.toLowerCase().includes(searchText.toLowerCase());
       })
     }
     else if(searchText && this.filterByVal === "email") {
-      employee = this.empData.filter((employee: Employee1) => {
+      employee = this.empData.filter((employee: Employee) => {
         return employee.Email.toLowerCase().includes(searchText.toLowerCase());
       })
     }
     // else if(searchText && this.filterByVal === "jobTitle") {
-    //   employee = this.filteredEmpData.filter((employee: Employee1) => {
+    //   employee = this.filteredEmpData.filter((employee: Employee) => {
     //     return employee.jobTitle.toLowerCase().includes(searchText.toLowerCase());
     //   })
     // }
     // else if(searchText && this.filterByVal === "department") {
-    //   employee = this.filteredEmpData.filter((employee: Employee1) => {
+    //   employee = this.filteredEmpData.filter((employee: Employee) => {
     //     return employee.department.toLowerCase().includes(searchText.toLowerCase());
     //   })
     // }
     // else if(searchText && this.filterByVal === "office") {
-    //   employee = this.filteredEmpData.filter((employee: Employee1) => {
+    //   employee = this.filteredEmpData.filter((employee: Employee) => {
     //     return employee.office.toLowerCase().includes(searchText.toLowerCase());
     //   })
     // }
     else if(searchText && this.filterByVal === "phoneNumber") {
-      employee = this.empData.filter((employee: Employee1) => {
+      employee = this.empData.filter((employee: Employee) => {
         return employee.PhoneNumber.toLowerCase().includes(searchText.toLowerCase());
       })
     }
     else if(searchText && this.filterByVal === "skypeId") {
-      employee = this.empData.filter((employee: Employee1) => {
+      employee = this.empData.filter((employee: Employee) => {
         return employee.SkypeId.toLowerCase().includes(searchText.toLowerCase());
       })
     }

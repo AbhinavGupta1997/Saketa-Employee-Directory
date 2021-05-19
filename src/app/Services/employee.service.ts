@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Employee } from '../Models/employee.model';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Employee1 } from '../Models/employee1.model';
+import { Employee } from '../Models/employee.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +10,7 @@ export class EmployeeService {
 
   employee: Subject<string> = new Subject();
 
-  employees = new Subject<Employee1[]>();
+  employees = new Subject<Employee[]>();
 
   private APIUrl = 'https://localhost:5001/api';
 
@@ -21,33 +20,33 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) { }
 
-  getEmployeeData(employees: Employee1[]) {
+  getEmployeeData(employees: Employee[]) {
     this.employees.next(employees);
   }
 
-  updateEmployee(value: Employee1[]) {
+  updateEmployee(value: Employee[]) {
     this.employees.next(value);
   }
 
-  getEmpData(): Observable<Employee1[]> {
+  getEmpData(): Observable<Employee[]> {
     return this.employees.asObservable();
   }
 
-  getEmployees(): Observable<Employee1[]> {
-    return this.http.get<Employee1[]>(this.APIUrl + '/Employee');
+  getEmployees(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(this.APIUrl + '/Employee');
   }
 
-  getEmployeeById(id: number): Observable<Employee1> {
+  getEmployeeById(id: number): Observable<Employee> {
     const url = `${this.APIUrl}/Employee/${id}`;
-    return this.http.get<Employee1>(url);
+    return this.http.get<Employee>(url);
   }
 
-  addEmployee(employee: Employee1): Observable<Employee1> {
-    return this.http.post<Employee1>(this.APIUrl + '/Employee', employee, this.httpOptions);
+  addEmployee(employee: Employee): Observable<Employee> {
+    return this.http.post<Employee>(this.APIUrl + '/Employee', employee, this.httpOptions);
   }
 
-  editEmployee(id: number, employee: Employee1): Observable<Employee1> {
+  editEmployee(id: number, employee: Employee): Observable<Employee> {
     const url = `${this.APIUrl}/Employee/${id}`;
-    return this.http.put<Employee1>(url, employee, this.httpOptions);
+    return this.http.put<Employee>(url, employee, this.httpOptions);
   }
 }

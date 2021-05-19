@@ -6,7 +6,7 @@ import { DepartmentService } from 'src/app/Services/department.service';
 import { EmployeeService } from '../../Services/employee.service';
 import { OfficeService } from 'src/app/Services/office.service';
 import { JobTitleService } from 'src/app/Services/job-title.service';
-import { Employee1 } from 'src/app/Models/employee1.model';
+import { Employee } from 'src/app/Models/employee.model';
 
 @Component({
   selector: 'app-side-navbar',
@@ -19,7 +19,7 @@ export class SideNavbarComponent implements OnInit {
   jobTitlesViewMoreStatus = false;
   viewLessBtnStatus = false;
 
-  employeeData: Employee1[] = [];
+  employeeData: Employee[] = [];
 
   departments: Department[] = [];
   offices: Office[] = [];
@@ -94,15 +94,15 @@ export class SideNavbarComponent implements OnInit {
   }
 
   getCountDepartment(deptId: number) {
-    return this.employeeData.filter((employee: Employee1) => employee.DepartmentId === deptId).length;
+    return this.employeeData.filter((employee: Employee) => employee.DepartmentId === deptId).length;
   }
 
   getCountOffice(officeId: number) {
-    return this.employeeData.filter((employee: Employee1) => employee.OfficeId === officeId).length;
+    return this.employeeData.filter((employee: Employee) => employee.OfficeId === officeId).length;
   }
 
   getCountJobTitle(jTitleId: number) {
-    return this.employeeData.filter((employee: Employee1) => employee.JobTitleId === jTitleId).length;
+    return this.employeeData.filter((employee: Employee) => employee.JobTitleId === jTitleId).length;
   }
 
 }

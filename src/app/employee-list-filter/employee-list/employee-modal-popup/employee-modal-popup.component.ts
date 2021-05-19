@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Department } from 'src/app/Models/department.model';
-import { Employee1 } from 'src/app/Models/employee1.model';
+import { Employee } from 'src/app/Models/employee.model';
 import { JobTitle } from 'src/app/Models/job-title.model';
 import { Office } from 'src/app/Models/office.model';
 import { DepartmentService } from 'src/app/Services/department.service';
@@ -21,12 +21,12 @@ export class EmployeeModalPopupComponent implements OnInit {
 
   editBtnStatus = false;
 
-  empData: Employee1[] = [];
-  employeees: Employee1[] = [];
+  empData: Employee[] = [];
+  employeees: Employee[] = [];
   departments: Department[] = [];
   offices: Office[] = [];
   jobTitles: JobTitle[] = [];
-  employee!: Employee1;
+  employee!: Employee;
   deptName!: string;
   jobTitleName!: string;
   officeLocation!: string;
