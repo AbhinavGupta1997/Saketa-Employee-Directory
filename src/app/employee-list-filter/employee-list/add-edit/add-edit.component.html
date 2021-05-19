@@ -48,21 +48,45 @@
                     </span>
                 </span>
             </div>
-            <label for="jobTitle"><b>Job Title</b><span class="req-data">*</span></label>
-            <select name="jobTitle" id="jobTitle" formControlName="jobTitle">
-                <option [value]="jobTitle.JobTitleId" *ngFor="let jobTitle of jobTitles">{{ jobTitle.JobTitleName }}</option>
-            </select>
-            <br>
-            <label for="office"><b>Office</b><span class="req-data">*</span></label>
-            <select name="office" id="office" formControlName="office">
-                <option [value]="office.OfficeId" *ngFor="let office of offices">{{ office.OfficeLocation }}</option>
-            </select>
-            <br>
-            <label for="department"><b>Department</b><span class="req-data">*</span></label>
-            <select name="department" id="department" formControlName="department">
-                <option [value]="department.DepartmentId" *ngFor="let department of departments">{{ department.DepartmentName }}</option>
-            </select>
-            <br>
+            <div class="form-group">
+                <label for="jobTitle"><b>Job Title</b><span class="req-data">*</span></label>
+                <select name="jobTitle" id="jobTitle" formControlName="jobTitle">
+                    <option [value]="jobTitle.JobTitleId" *ngFor="let jobTitle of jobTitles">{{ jobTitle.JobTitleName }}</option>
+                </select>
+
+                <span *ngIf="!jobTitle.valid && (jobTitle.touched || userSubmitted)"
+                class="error-block">
+                    <span *ngIf="jobTitle.hasError('required')">
+                        Job Title is required
+                    </span>
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="office"><b>Office</b><span class="req-data">*</span></label>
+                <select name="office" id="office" formControlName="office">
+                    <option [value]="office.OfficeId" *ngFor="let office of offices">{{ office.OfficeLocation }}</option>
+                </select>
+
+                <span *ngIf="!office.valid && (office.touched || userSubmitted)"
+                class="error-block">
+                    <span *ngIf="office.hasError('required')">
+                        Office is required
+                    </span>
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="department"><b>Department</b><span class="req-data">*</span></label>
+                <select name="department" id="department" formControlName="department">
+                    <option [value]="department.DepartmentId" *ngFor="let department of departments">{{ department.DepartmentName }}</option>
+                </select>
+
+                <span *ngIf="!department.valid && (department.touched || userSubmitted)"
+                class="error-block">
+                    <span *ngIf="department.hasError('required')">
+                        Department is required
+                    </span>
+                </span>
+            </div>
             <div class="form-group">
                 <label for="phoneNumber"><b>Phone Number</b><span class="req-data">*</span></label>
                 <input id="phoneNumber" type="tel" formControlName="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number" minlength="10" maxlength="10" required>

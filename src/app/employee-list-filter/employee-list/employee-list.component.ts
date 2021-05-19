@@ -95,21 +95,27 @@ export class EmployeeListComponent implements OnInit {
         return employee.Email.toLowerCase().includes(searchText.toLowerCase());
       })
     }
-    // else if(searchText && this.filterByVal === "jobTitle") {
-    //   employee = this.filteredEmpData.filter((employee: Employee) => {
-    //     return employee.jobTitle.toLowerCase().includes(searchText.toLowerCase());
-    //   })
-    // }
-    // else if(searchText && this.filterByVal === "department") {
-    //   employee = this.filteredEmpData.filter((employee: Employee) => {
-    //     return employee.department.toLowerCase().includes(searchText.toLowerCase());
-    //   })
-    // }
-    // else if(searchText && this.filterByVal === "office") {
-    //   employee = this.filteredEmpData.filter((employee: Employee) => {
-    //     return employee.office.toLowerCase().includes(searchText.toLowerCase());
-    //   })
-    // }
+    else if(searchText && this.filterByVal === "department") {
+      var deptId = this.departments.find((department: Department) =>
+      department.DepartmentName.toLowerCase().includes(searchText.toLowerCase()))?.DepartmentId;
+      employee = this.filteredEmpData.filter((employee: Employee) => {
+        return employee.DepartmentId === deptId;
+      })
+    }
+    else if(searchText && this.filterByVal === "jobTitle") {
+      var jobTitleId = this.jobTitles.find((jTitle: JobTitle) =>
+      jTitle.JobTitleName.toLowerCase().includes(searchText.toLowerCase()))?.JobTitleId;
+      employee = this.filteredEmpData.filter((employee: Employee) => {
+        return employee.JobTitleId === jobTitleId;
+      })
+    }
+    else if(searchText && this.filterByVal === "office") {
+      var officeId = this.offices.find((office: Office) =>
+      office.OfficeLocation.toLowerCase().includes(searchText.toLowerCase()))?.OfficeId;
+      employee = this.filteredEmpData.filter((employee: Employee) => {
+        return employee.OfficeId === officeId;
+      })
+    }
     else if(searchText && this.filterByVal === "phoneNumber") {
       employee = this.empData.filter((employee: Employee) => {
         return employee.PhoneNumber.toLowerCase().includes(searchText.toLowerCase());

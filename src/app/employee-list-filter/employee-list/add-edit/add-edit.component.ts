@@ -37,8 +37,8 @@ export class AddEditComponent implements OnInit {
     preferredName: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     jobTitle: ['', Validators.required],
-    office: [''],
-    department: [''],
+    office: ['', Validators.required],
+    department: ['', Validators.required],
     phoneNumber: ['',[Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
     skypeId: ['']
   })
@@ -65,7 +65,9 @@ export class AddEditComponent implements OnInit {
           return element.EmployeeId === this.employeeId;
         })[0]
   
-        this.addEmployeeForm.setValue(this.employee);
+        this.addEmployeeForm.setValue({firstName: this.employee.FirstName, lastName: this.employee.LastName,
+          preferredName: this.employee.PreferredName, email: this.employee.Email, jobTitle: this.employee.JobTitleId,
+          office: this.employee.OfficeId, department: this.employee.DepartmentId, phoneNumber: this.employee.PhoneNumber, skypeId: this.employee.SkypeId});
         console.log(this.employee)
       }
     });
@@ -90,8 +92,6 @@ export class AddEditComponent implements OnInit {
     this.btnStatusEvent.emit(value);
   }
 
-  test: any;
-
   //Pre-populating Preferred Name with First name & Last name
   updateName(event: Event) {
     this.fName = (<HTMLInputElement>document.getElementById("firstName")).value;
@@ -100,7 +100,6 @@ export class AddEditComponent implements OnInit {
   }
 
   onSubmit() {
-    this.test = (<HTMLInputElement>document.getElementById("department")).value;
     this.userSubmitted = true;
     if (this.addEmployeeForm.valid) {
       //Adding employee form
