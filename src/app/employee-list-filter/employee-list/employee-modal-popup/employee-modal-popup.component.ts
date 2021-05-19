@@ -1,7 +1,12 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Department } from 'src/app/Models/department.model';
 import { Employee1 } from 'src/app/Models/employee1.model';
+import { JobTitle } from 'src/app/Models/job-title.model';
+import { Office } from 'src/app/Models/office.model';
+import { DepartmentService } from 'src/app/Services/department.service';
 import { EmployeeService } from 'src/app/Services/employee.service';
-import { Employee } from '../../../Models/employee.model';
+import { JobTitleService } from 'src/app/Services/job-title.service';
+import { OfficeService } from 'src/app/Services/office.service';
 
 @Component({
   selector: 'app-employee-modal-popup',
@@ -11,7 +16,6 @@ import { Employee } from '../../../Models/employee.model';
 export class EmployeeModalPopupComponent implements OnInit {
 
   @Input() employeeId: number = 0;
-  // empId = this.employeeId;
 
   @Output() displayStatusEvent: EventEmitter<boolean> = new EventEmitter();
 
@@ -19,25 +23,50 @@ export class EmployeeModalPopupComponent implements OnInit {
 
   empData: Employee1[] = [];
   employeees: Employee1[] = [];
+  departments: Department[] = [];
+  offices: Office[] = [];
+  jobTitles: JobTitle[] = [];
   employee!: Employee1;
+  deptName!: string;
+  jobTitleName!: string;
+  officeLocation!: string;
 
-  // employee1!: Employee1;
-
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService,
+    private departmentService: DepartmentService,
+    private officeService: OfficeService,
+    private jobTitleService: JobTitleService) { }
 
   ngOnInit() {
-    // this.empData = JSON.parse(localStorage.getItem("employee")!);
-    // this.getEmployees();
     this.getEmployee();
-
-    // this.employee = this.empData.filter((employee: Employee1) => {
-    // return employee.EmployeeId === this.employeeId;
-  // })[0];
+    this.getDepartments();
+    this.getJobTitles();
+    this.getOffices();
   }
 
   getEmployees(): void {
     this.employeeService.getEmployees()
     .subscribe(employeees => this.employeees = employeees);
+  }
+
+  getDepartments(): void {
+    this.departmentService.getDepartments()
+    .subscribe(departments => {this.departments = departments;
+      this.deptName = this.departments.find(department => department.DepartmentId === this.employee.DepartmentId)?.DepartmentName!
+    });
+  }
+
+  getJobTitles(): void {
+    this.jobTitleService.getJobTitles()
+    .subscribe(jobTitles => {this.jobTitles = jobTitles;
+      this.jobTitleName = this.jobTitles.find(jobTitle => jobTitle.JobTitleId === this.employee.JobTitleId)?.JobTitleName!
+    });
+  }
+
+  getOffices(): void {
+    this.officeService.getOffices()
+    .subscribe(offices => {this.offices = offices;
+      this.officeLocation = this.offices.find(office => office.OfficeId === this.employee.OfficeId)?.OfficeLocation!
+    });
   }
 
   getEmployee(): void {

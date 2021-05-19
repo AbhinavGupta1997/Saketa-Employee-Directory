@@ -30,11 +30,11 @@
     <div>
         <h2>Job Description</h2>
         <label>Job-Title: </label>
-        <div class="modalJTitle values">{{ employee.JobTitleId }}</div>
+        <div class="modalJTitle values">{{ jobTitleName }}</div>
         <label>Department: </label>
-        <div class="modalDept values">{{ employee.DepartmentId }}</div>
+        <div class="modalDept values">{{ deptName }}</div>
         <label>Location: </label>
-        <div class="modalOffice values">{{ employee.OfficeId }}</div>
+        <div class="modalOffice values">{{ officeLocation }}</div>
     </div>
     <button id="modalButton" (click)="changeEditStatus()">Edit</button>
     <button (click)="changeDisplayStatus(false)">Close</button>

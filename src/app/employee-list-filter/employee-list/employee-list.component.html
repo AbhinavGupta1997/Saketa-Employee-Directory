@@ -31,15 +31,14 @@
 </p>
 <div class="display-card-container">
     <div *ngFor="let emp of filteredEmpData" class="wd-24">
-        <!-- {changeDisplayStatus(emp.EmployeeId)} -->
         <div (click)="changeDisplayStatus(emp.EmployeeId)">
-            <!-- (click)="changeDisplayStatus(emp.EmployeeId)" -->
             <img src="assets\Images\User image.jpg">
             <div class="wd-calc">
                 <div class="displayName">{{ emp.PreferredName }}</div>
                 <div class="displayJobTitle">{{ emp.JobTitleId }}</div>
                 <!-- <div class="displayDept">{{ getDepartment(emp.DepartmentId) }} Department</div> -->
                 <div class="displayDept">{{ emp.DepartmentId }} Department</div>
+                <!-- <div class="displayDept" ng-repeat="dept in departments ">{{ departments.find(dept => dept.DepartmentId === emp.DepartmentId).DepartmentName }} Department</div> -->
                 <!-- getDepartment(emp.DepartmentId) -->
                 <div>
                     <i class="fas fa-phone-square-alt"></i>

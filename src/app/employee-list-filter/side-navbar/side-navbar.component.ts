@@ -1,11 +1,9 @@
-import { Component, OnInit, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Department } from 'src/app/Models/department.model';
 import { Office } from 'src/app/Models/office.model';
 import { JobTitle } from 'src/app/Models/job-title.model';
 import { DepartmentService } from 'src/app/Services/department.service';
-import { Employee } from '../../Models/employee.model';
 import { EmployeeService } from '../../Services/employee.service';
-import { SharedService } from '../../Services/shared.service'
 import { OfficeService } from 'src/app/Services/office.service';
 import { JobTitleService } from 'src/app/Services/job-title.service';
 import { Employee1 } from 'src/app/Models/employee1.model';
@@ -16,29 +14,18 @@ import { Employee1 } from 'src/app/Models/employee1.model';
   styleUrls: ['./side-navbar.component.scss']
 })
 export class SideNavbarComponent implements OnInit {
-  // departments = ['IT','HR','MD','Sales'];
-  // offices = ['Seattle','India'];
-  // jobTitles = ['SharePoint Practice Head','.Net Development Lead','Recruiting Expert','BI Developer','Business Analyst'];
-  jobTitlesViewMore = ['Operations Manager','Product Manager','Network Engineer','Talent Magnet Jr.','Software Engineer','UI Designer'];
 
   viewMoreBtnStatus = true;
   jobTitlesViewMoreStatus = false;
   viewLessBtnStatus = false;
 
   employeeData: Employee1[] = [];
-  // employeeData = JSON.parse(localStorage.getItem("employee")!);
-
-  filterApplied = '';
-  departmentCount!: number;
-  officeCount!: number;
-  jobTitleCount!: number;
 
   departments: Department[] = [];
   offices: Office[] = [];
   jobTitles: JobTitle[] = [];
 
   constructor(private employees: EmployeeService,
-    private sharedService: SharedService,
     private departmentService: DepartmentService,
     private officeService: OfficeService,
     private jobTitleService: JobTitleService) { }
@@ -48,15 +35,30 @@ export class SideNavbarComponent implements OnInit {
     this.getDepartments();
     this.getOffices();
     this.getJobTitles();
-    this.getDepartmentCount();
   }
 
-  applyFilter(value: number) {
+  applyDepartmentFilter(value: string) {
+    var deptId = this.departments.find((department: Department) =>
+      department.DepartmentName === value)?.DepartmentId;
     var employee = this.employeeData.filter((employee: any) =>
-      employee.DepartmentId === value || employee.JobTitleId === value || employee.OfficeId === value);
+      employee.DepartmentId === deptId);
     this.employees.updateEmployee(employee);
+  }
 
-	// console.log(this.employees.employeeData);
+  applyJobTitleFilter(value: string) {
+    var jobTitleId = this.jobTitles.find((jTitle: JobTitle) =>
+    jTitle.JobTitleName === value)?.JobTitleId;
+    var employee = this.employeeData.filter((employee: any) =>
+      employee.JobTitleId === jobTitleId);
+    this.employees.updateEmployee(employee);
+  }
+
+  applyOfficeFilter(value: string) {
+    var officeId = this.offices.find((office: Office) =>
+    office.OfficeLocation === value)?.OfficeId;
+    var employee = this.employeeData.filter((employee: any) =>
+      employee.OfficeId === officeId);
+    this.employees.updateEmployee(employee);
   }
 
   onViewMoreClick() {
@@ -70,13 +72,6 @@ export class SideNavbarComponent implements OnInit {
     this.jobTitlesViewMoreStatus = false;
     this.viewLessBtnStatus = false;
   }
-
-  // getCount(property: string, value: string) {
-  //   return this.employeeData.filter((employee: Employee) => employee[property] === value).length;
-  // }
-  // getDepartmentCount(id: number) {
-  //   return this.sharedService.getDepartmentCount(id);
-  // }
 
   getEmployees(): void {
     this.employees.getEmployees()
@@ -98,32 +93,16 @@ export class SideNavbarComponent implements OnInit {
     .subscribe(jobTitles => this.jobTitles = jobTitles);
   }
 
-  getDepartmentCount() {
-    return this.departmentService.getDepartmentCount()
-    .subscribe(deptCount => this.departmentCount = deptCount);
-    // console.log(this.departmentCount);
+  getCountDepartment(deptId: number) {
+    return this.employeeData.filter((employee: Employee1) => employee.DepartmentId === deptId).length;
   }
 
-  getOfficeCount(id: number) {
-    return this.officeService.getOfficeCount(id)
-    .subscribe(officeCount => this.officeCount = officeCount);
+  getCountOffice(officeId: number) {
+    return this.employeeData.filter((employee: Employee1) => employee.OfficeId === officeId).length;
   }
 
-  getJobTitleCount(id: number) {
-    return this.jobTitleService.getJobTitleCount(id)
-    .subscribe(jobTitleCount => this.jobTitleCount = jobTitleCount);
+  getCountJobTitle(jTitleId: number) {
+    return this.employeeData.filter((employee: Employee1) => employee.JobTitleId === jTitleId).length;
   }
-
-  // getCountDepartment(dept: string) {
-  //   return this.employeeData.filter((employee: Employee) => employee.department === dept).length;
-  // }
-
-  // getCountOffice(office: string) {
-  //   return this.employeeData.filter((employee: Employee) => employee.office === office).length;
-  // }
-
-  // getCountJobTitle(jTitle: string) {
-    // return this.employeeData.filter((employee: Employee) => employee.jobTitle === jTitle).length;
-  // }
 
 }

@@ -11,19 +11,11 @@ export class DepartmentService {
 
   constructor(private http: HttpClient) { }
 
-  // departments: Department[] = [];
-
   getDepartments(): Observable<Department[]> {
     return this.http.get<Department[]>(this.APIUrl + '/Department');
   }
 
-  // getDepartmentById(id: number): Observable<Department> {
-  //   const url = `${this.APIUrl}/Department/${id}`;
-  //   return this.http.get<Department>(url);
-  // }
-
   getDepartmentById(id: number): Observable<string> {
-    // const url = `${this.APIUrl}/Department/1`;
     const url = `${this.APIUrl}/Department/${id}`;
     return this.http.get<string>(url);
   }
@@ -33,8 +25,4 @@ export class DepartmentService {
     // const url = `${this.APIUrl}/Department/GetDepartmentCount/${id}`;
     return this.http.get<number>(url);
   }
-
-  // getDepartmentCount(): Observable<number> {
-  //   return this.http.get<number>(this.APIUrl + '/Department/GetDepartmentCount/1')
-  // }
 }

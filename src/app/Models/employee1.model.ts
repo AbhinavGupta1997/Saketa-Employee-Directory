@@ -1,18 +1,3 @@
-// export interface Employee1 {
-//     EmployeeId: number;
-//     FirstName: string;
-//     LastName: string;
-//     PreferredName: string;
-//     Email: string;
-//     PhoneNumber: string;
-//     SkypeId: string;
-//     JobTitleId: number;
-//     DepartmentId: number;
-//     OfficeId: number;
-
-//     // new (FirstName: string, LastName: string, PreferredName: string, Email: string, PhoneNumber: string, SkypeId: string): Employee1
-// }
-
 export class Employee1 {
     public EmployeeId: number = 0;
     public FirstName: string;
@@ -26,7 +11,6 @@ export class Employee1 {
     public SkypeId: string;
 
     constructor(args: any) {
-        // this.EmployeeId = args.id;
         this.FirstName = args.firstName;
         this.LastName = args.lastName;
         this.PreferredName = args.preferredName;

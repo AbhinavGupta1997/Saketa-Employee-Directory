@@ -9,11 +9,8 @@ import { Employee1 } from '../Models/employee1.model';
 })
 export class EmployeeService {
 
-  // employeeData: Employee[] = JSON.parse(localStorage.getItem("employee")!);
   employee: Subject<string> = new Subject();
-  // employeees = this.getEmployees();
 
-  // employees = new Subject<Employee[]>();
   employees = new Subject<Employee1[]>();
 
   private APIUrl = 'https://localhost:5001/api';
@@ -24,30 +21,13 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) { }
 
-  // getEmployeeData(employees: Employee[]) {
-  //   this.employees.next(employees);
-  // }
-
   getEmployeeData(employees: Employee1[]) {
     this.employees.next(employees);
   }
 
-  // updateEmployee(value: Employee[]) {
-  //   this.employees.next(value);
-  // }
-
   updateEmployee(value: Employee1[]) {
     this.employees.next(value);
   }
-
-  // getEmployeees(): any {
-  //   this.getEmployees()
-  //   .subscribe(employeees => {this.employeees = employeees});
-  // }
-
-  // getEmpData(): Observable<Employee[]> {
-  //   return this.employees.asObservable();
-  // }
 
   getEmpData(): Observable<Employee1[]> {
     return this.employees.asObservable();

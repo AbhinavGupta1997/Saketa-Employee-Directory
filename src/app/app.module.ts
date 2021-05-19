@@ -10,7 +10,6 @@ import { AddEditComponent } from './employee-list-filter/employee-list/add-edit/
 import { ReactiveFormsModule } from '@angular/forms';
 import { EmployeeModalPopupComponent } from './employee-list-filter/employee-list/employee-modal-popup/employee-modal-popup.component';
 import { EmployeeService } from './Services/employee.service';
-import { SharedService } from './Services/shared.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { EmployeeListFilterComponent } from './employee-list-filter/employee-list-filter.component';
@@ -33,8 +32,7 @@ import { EmployeeListFilterComponent } from './employee-list-filter/employee-lis
     Ng2SearchPipeModule,
     HttpClientModule
   ],
-  providers: [EmployeeService,
-    SharedService],
+  providers: [EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
