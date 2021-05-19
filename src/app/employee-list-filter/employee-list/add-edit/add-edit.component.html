@@ -50,17 +50,17 @@
             </div>
             <label for="jobTitle"><b>Job Title</b><span class="req-data">*</span></label>
             <select name="jobTitle" id="jobTitle" formControlName="jobTitle">
-                <option [value]="jobTitle" *ngFor="let jobTitle of jobTitles">{{ jobTitle }}</option>
+                <option [value]="jobTitle.JobTitleId" *ngFor="let jobTitle of jobTitles">{{ jobTitle.JobTitleName }}</option>
             </select>
             <br>
             <label for="office"><b>Office</b><span class="req-data">*</span></label>
             <select name="office" id="office" formControlName="office">
-                <option [value]="office" *ngFor="let office of offices">{{ office }}</option>
+                <option [value]="office.OfficeId" *ngFor="let office of offices">{{ office.OfficeLocation }}</option>
             </select>
             <br>
             <label for="department"><b>Department</b><span class="req-data">*</span></label>
             <select name="department" id="department" formControlName="department">
-                <option [value]="department" *ngFor="let department of departments">{{ department }}</option>
+                <option [value]="department.DepartmentId" *ngFor="let department of departments">{{ department.DepartmentName }}</option>
             </select>
             <br>
             <div class="form-group">
