@@ -1,0 +1,21 @@
+<!--<app-header></app-header>-->
+
+<div *ngIf="!isUserAuthenticated()">
+  <img src="assets/Images/Saketa logo.png">
+  <h1>Welcome to Saketa Employee Directory!</h1>
+  <p>The Ultimate People Directory Experience</p>
+  <br />
+  <p>Please Login to continue.</p>
+  <a routerLink="/login">Login</a>
+  <p>New to Saketa!</p>
+  <a routerLink="/register">Register</a>
+</div>
+
+<div *ngIf="isUserAuthenticated()">
+  <div *ngIf="isUserAuthenticated()"><a class="logout" (click)="logOut()">Logout</a></div>
+  <app-header></app-header>
+  <app-employee-list-filter >
+    <div *ngIf="isUserAuthenticated()"><a class="logout" (click)="logOut()">Logout</a></div>
+  </app-employee-list-filter>
+</div>
+<router-outlet></router-outlet>

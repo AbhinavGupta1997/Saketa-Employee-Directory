@@ -29,7 +29,7 @@ export class EmployeeListComponent implements OnInit {
   empData: Employee[] = [];
 
 
-  employeees: Employee[] = [];
+ employeees: Employee[] = [];
   departments: Department[] = [];
   offices: Office[] = [];
   jobTitles: JobTitle[] = [];

@@ -51,7 +51,7 @@ export class EmployeeModalPopupComponent implements OnInit {
   getDepartments(): void {
     this.departmentService.getDepartments()
     .subscribe(departments => {this.departments = departments;
-      this.deptName = this.departments.find(department => department.DepartmentId === this.employee.DepartmentId)?.DepartmentName!
+      this.deptName = this.departments.find(department => department.DepartmentId === this.employee.DepartmentId)!.DepartmentName!
     });
   }
 
