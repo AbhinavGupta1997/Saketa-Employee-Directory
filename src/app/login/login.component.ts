@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
 
     this.authenticateService.AuthenticateUser(credentials)
       .subscribe(response => {
+        //const token = (<any>response);
         const token = (<any>response).Token;
         localStorage.setItem("jwt", token);
         this.invalidLogin = false;

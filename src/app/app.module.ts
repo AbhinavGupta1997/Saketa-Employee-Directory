@@ -19,6 +19,15 @@ import { JobTitleService } from './Services/job-title.service';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
+
+export function tokenGetter() {
+  return localStorage.getItem("jwt");
+}
 
 @NgModule({
   declarations: [
@@ -32,6 +41,8 @@ import { RegisterComponent } from './register/register.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
+    DashboardComponent,
+    AuthCallbackComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +50,23 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     ReactiveFormsModule,
     // Ng2SearchPipeModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule,
+    OAuthModule.forRoot({
+      resourceServer: {
+          allowedUrls: ['https://localhost:6001/api/Employee',
+          'https://localhost:6001/api/Department'],
+          // allowedUrls: ['http://www.angular.at/api'],
+          sendAccessToken: true
+      }
+  }),
+    // JwtModule.forRoot({
+    //   config: {
+    //     tokenGetter: tokenGetter,
+    //     allowedDomains: ["localhost:5001"],
+    //     disallowedRoutes: []
+    //   }
+    // })
   ],
   providers: [EmployeeService,
     DepartmentService,

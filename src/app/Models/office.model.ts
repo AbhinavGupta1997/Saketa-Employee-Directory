@@ -1,4 +1,9 @@
+// export interface Office {
+//     OfficeId: number;
+//     OfficeLocation: string;
+// }
+
 export interface Office {
-    OfficeId: number;
-    OfficeLocation: string;
+    officeId: number;
+    officeLocation: string;
 }

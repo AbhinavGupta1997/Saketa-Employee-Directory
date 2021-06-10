@@ -1,4 +1,9 @@
+// export interface Department {
+//     DepartmentId: number;
+//     DepartmentName: string;
+// }
+
 export interface Department {
-    DepartmentId: number;
-    DepartmentName: string;
+    departmentId: number;
+    departmentName: string;
 }

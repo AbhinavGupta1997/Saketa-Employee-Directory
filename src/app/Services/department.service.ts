@@ -1,23 +1,33 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Department } from '../Models/department.model';
+import { AuthOService } from './auth-o.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DepartmentService {
-  readonly APIUrl = "https://localhost:5001/api";
+  readonly APIUrl = "https://localhost:6001/api";
+  accessToken = this.authService.accessToken;
 
-  constructor(private http: HttpClient) { }
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.accessToken 
+    })
+  };
+
+  constructor(private http: HttpClient, private authService: AuthOService) { }
 
   getDepartments(): Observable<Department[]> {
-    return this.http.get<Department[]>(this.APIUrl + '/Department');
+    // return this.http.get<Department[]>(this.APIUrl + '/Department');
+    return this.http.get<Department[]>(this.APIUrl + '/Department', this.httpOptions);
   }
 
   getDepartmentById(id: number): Observable<string> {
     const url = `${this.APIUrl}/Department/${id}`;
-    return this.http.get<string>(url);
+    return this.http.get<string>(url, this.httpOptions);
   }
 
   getDepartmentCount(): Observable<number> {

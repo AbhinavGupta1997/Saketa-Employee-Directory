@@ -12,10 +12,13 @@
 </div>
 
 <div *ngIf="isUserAuthenticated()">
+  <!--<div *ngIf="isUserAuthenticated()"><a class="logout" (click)="logOut()">Logout</a></div>
+  <app-dashboard></app-dashboard>-->
+
   <div *ngIf="isUserAuthenticated()"><a class="logout" (click)="logOut()">Logout</a></div>
   <app-header></app-header>
-  <app-employee-list-filter >
-    <div *ngIf="isUserAuthenticated()"><a class="logout" (click)="logOut()">Logout</a></div>
+  <app-employee-list-filter>
+  <div *ngIf="isUserAuthenticated()"><a class="logout" (click)="logOut()">Logout</a></div>
   </app-employee-list-filter>
 </div>
 <router-outlet></router-outlet>

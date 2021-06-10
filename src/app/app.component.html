@@ -1,1 +1,24 @@
-<app-home></app-home>
+<!-- <app-home></app-home> -->
+
+<!-- <app-header></app-header>
+<app-employee-list-filter></app-employee-list-filter> -->
+
+<div>
+    <button (click)="login()">Login</button>
+    <button (click)="logout()">Logout</button>
+</div>
+
+<!-- <h2>Id Token</h2>
+<p>{{idToken}}</p> -->
+
+<h6>Access Token</h6>
+<p>{{accessToken}}</p>
+
+<h3>Token</h3>
+<p>{{token}}</p>
+ 
+<!-- <h2>Refresh Token</h2>
+<p>{{refreshToken}}</p> -->
+
+<!-- <router-outlet></router-outlet> -->
+<router-outlet *ngIf="token"></router-outlet>

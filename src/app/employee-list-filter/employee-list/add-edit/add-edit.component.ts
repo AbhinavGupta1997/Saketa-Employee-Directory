@@ -62,7 +62,8 @@ export class AddEditComponent implements OnInit {
       this.employeees = employeees;
       if (this.employeeId) {
         this.employee = employeees.filter((element: Employee) => {
-          return element.EmployeeId === this.employeeId;
+          return element.employeeId === this.employeeId;
+          // return element.EmployeeId === this.employeeId;
         })[0]
   
         this.addEmployeeForm.setValue({firstName: this.employee.FirstName, lastName: this.employee.LastName,
@@ -117,7 +118,8 @@ export class AddEditComponent implements OnInit {
       //Editing employee form
       else {
         var empIndex = this.employeees.findIndex((element: Employee) => {
-          return element.EmployeeId === this.employeeId;
+          return element.employeeId === this.employeeId;
+          // return element.EmployeeId === this.employeeId;
         });
       
         if(empIndex > -1){

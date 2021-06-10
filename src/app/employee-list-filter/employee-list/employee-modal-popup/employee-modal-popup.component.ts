@@ -51,21 +51,25 @@ export class EmployeeModalPopupComponent implements OnInit {
   getDepartments(): void {
     this.departmentService.getDepartments()
     .subscribe(departments => {this.departments = departments;
-      this.deptName = this.departments.find(department => department.DepartmentId === this.employee.DepartmentId)!.DepartmentName!
+      this.deptName = this.departments.find(department => department.departmentId === this.employee.departmentId)!.departmentName!
+      // this.deptName = this.departments.find(department => department.DepartmentId === this.employee.departmentId)!.DepartmentName!
+      // this.deptName = this.departments.find(department => department.DepartmentId === this.employee.DepartmentId)!.DepartmentName!
     });
   }
 
   getJobTitles(): void {
     this.jobTitleService.getJobTitles()
     .subscribe(jobTitles => {this.jobTitles = jobTitles;
-      this.jobTitleName = this.jobTitles.find(jobTitle => jobTitle.JobTitleId === this.employee.JobTitleId)?.JobTitleName!
+      this.jobTitleName = this.jobTitles.find(jobTitle => jobTitle.jobTitleId === this.employee.jobTitleId)?.jobTitleName!
+      // this.jobTitleName = this.jobTitles.find(jobTitle => jobTitle.JobTitleId === this.employee.JobTitleId)?.JobTitleName!
     });
   }
 
   getOffices(): void {
     this.officeService.getOffices()
     .subscribe(offices => {this.offices = offices;
-      this.officeLocation = this.offices.find(office => office.OfficeId === this.employee.OfficeId)?.OfficeLocation!
+      this.officeLocation = this.offices.find(office => office.officeId === this.employee.officeId)?.officeLocation!
+      // this.officeLocation = this.offices.find(office => office.OfficeId === this.employee.OfficeId)?.OfficeLocation!
     });
   }
 

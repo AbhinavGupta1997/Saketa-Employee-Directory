@@ -1,14 +1,17 @@
 <section>
     <h3>Departments</h3>
-    <div *ngFor="let department of departments" (click)="applyDepartmentFilter(department.DepartmentName)">{{ department.DepartmentName }}(<p>{{ getCountDepartment(department.DepartmentId) }}</p>)</div>
+    <div *ngFor="let department of departments" (click)="applyDepartmentFilter(department.departmentName)">{{ department.departmentName }}(<p>{{ getCountDepartment(department.departmentId) }}</p>)</div>
+    <!-- <div *ngFor="let department of departments" (click)="applyDepartmentFilter(department.DepartmentName)">{{ department.DepartmentName }}(<p>{{ getCountDepartment(department.DepartmentId) }}</p>)</div> -->
 </section>
 <section>
     <h3>Offices</h3>
-    <div *ngFor="let office of offices" (click)="applyOfficeFilter(office.OfficeLocation)">{{ office.OfficeLocation }}(<p>{{ getCountOffice(office.OfficeId) }}</p>)</div>
+    <div *ngFor="let office of offices" (click)="applyOfficeFilter(office.officeLocation)">{{ office.officeLocation }}(<p>{{ getCountOffice(office.officeId) }}</p>)</div>
+    <!-- <div *ngFor="let office of offices" (click)="applyOfficeFilter(office.OfficeLocation)">{{ office.OfficeLocation }}(<p>{{ getCountOffice(office.OfficeId) }}</p>)</div> -->
 </section>
 <section>
     <h3>Job Titles</h3>
-    <div *ngFor="let jobTitle of jobTitles" (click)="applyJobTitleFilter(jobTitle.JobTitleName)">{{ jobTitle.JobTitleName }}(<p>{{ getCountJobTitle(jobTitle.JobTitleId) }}</p>)</div>
+    <div *ngFor="let jobTitle of jobTitles" (click)="applyJobTitleFilter(jobTitle.jobTitleName)">{{ jobTitle.jobTitleName }}(<p>{{ getCountJobTitle(jobTitle.jobTitleId) }}</p>)</div>
+    <!-- <div *ngFor="let jobTitle of jobTitles" (click)="applyJobTitleFilter(jobTitle.JobTitleName)">{{ jobTitle.JobTitleName }}(<p>{{ getCountJobTitle(jobTitle.JobTitleId) }}</p>)</div> -->
     <div id="viewMore" *ngIf="viewMoreBtnStatus === true" (click)="onViewMoreClick()">view more</div>
     <div *ngIf="jobTitlesViewMoreStatus === true">
     </div>
