@@ -9,12 +9,13 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  {path: 'Employee', component: EmployeeListComponent},
-  {path: 'Department', component: EmployeeListComponent},
-  { path: 'Department/GetDepartmentCount/1', component: SideNavbarComponent },
+  // {path: 'Employee', component: EmployeeListComponent},
+  // {path: 'Department', component: EmployeeListComponent},
+  // { path: 'Department/GetDepartmentCount/1', component: SideNavbarComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent },
+  // { path: '/', component: DashboardComponent },
   //{ path: 'home', component: HomeComponent }
 ];
 

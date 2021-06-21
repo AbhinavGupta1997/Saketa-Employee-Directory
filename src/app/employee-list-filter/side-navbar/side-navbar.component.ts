@@ -42,7 +42,8 @@ export class SideNavbarComponent implements OnInit {
       department.departmentName === value)?.departmentId;
       // department.DepartmentName === value)?.DepartmentId;
     var employee = this.employeeData.filter((employee: any) =>
-      employee.DepartmentId === deptId);
+      employee.departmentId === deptId);
+      // employee.DepartmentId === deptId);
     this.employees.updateEmployee(employee);
   }
 
@@ -51,7 +52,8 @@ export class SideNavbarComponent implements OnInit {
     jTitle.jobTitleName === value)?.jobTitleId;
     // jTitle.JobTitleName === value)?.JobTitleId;
     var employee = this.employeeData.filter((employee: any) =>
-      employee.JobTitleId === jobTitleId);
+      employee.jobTitleId === jobTitleId);
+      // employee.JobTitleId === jobTitleId);
     this.employees.updateEmployee(employee);
   }
 
@@ -60,7 +62,8 @@ export class SideNavbarComponent implements OnInit {
     office.officeLocation === value)?.officeId;
     // office.OfficeLocation === value)?.OfficeId;
     var employee = this.employeeData.filter((employee: any) =>
-      employee.OfficeId === officeId);
+      employee.officeId === officeId);
+      // employee.OfficeId === officeId);
     this.employees.updateEmployee(employee);
   }
 

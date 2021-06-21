@@ -39,4 +39,8 @@ export class AuthOService {
   get accessToken() {
     return this.oauthService.getAccessToken();
   }
+
+  get idToken() {
+    return this.oauthService.getIdToken();
+  }
 }

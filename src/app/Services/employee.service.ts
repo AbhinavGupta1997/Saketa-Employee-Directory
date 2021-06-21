@@ -15,6 +15,8 @@ export class EmployeeService {
 
   private APIUrl = 'https://localhost:6001/api';
   accessToken = this.authService.accessToken;
+  idToken = this.authService.idToken;
+  claims = this.authService.getIdentityClaims();
 
   httpOptions = {
     headers: new HttpHeaders({
