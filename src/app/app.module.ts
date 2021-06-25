@@ -55,7 +55,8 @@ export function tokenGetter() {
     OAuthModule.forRoot({
       resourceServer: {
           allowedUrls: ['https://localhost:6001/api/Employee',
-          'https://localhost:6001/api/Department'],
+          'https://localhost:6001/api/Department',
+          'https://localhost:5001/connect/userinfo'],
           // allowedUrls: ['http://www.angular.at/api'],
           sendAccessToken: true
       }

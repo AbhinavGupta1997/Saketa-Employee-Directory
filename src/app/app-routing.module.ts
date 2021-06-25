@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AddEditComponent } from './employee-list-filter/employee-list/add-edit/add-edit.component';
 import { EmployeeListComponent } from './employee-list-filter/employee-list/employee-list.component';
 import { EmployeeModalPopupComponent } from './employee-list-filter/employee-list/employee-modal-popup/employee-modal-popup.component';
 import { SideNavbarComponent } from './employee-list-filter/side-navbar/side-navbar.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard/addEmployee', component: AddEditComponent },
   // { path: '/', component: DashboardComponent },
   //{ path: 'home', component: HomeComponent }
 ];

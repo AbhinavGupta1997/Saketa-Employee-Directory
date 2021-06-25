@@ -20,7 +20,7 @@
                 <option value="skypeId">Skype ID</option>
             </select>
         </form>
-        <button id="add-employee" (click)="changeStatus()">Add Employee</button>
+        <button id="add-employee" (click)="changeStatus()" *ngIf="role === 'Admin'">Add Employee</button>
         <div *ngIf="btnStatus === true" id="modal-add-employee" class="modal">
             <app-add-edit (btnStatusEvent)="changeStatusFalse($event)"></app-add-edit>
         </div>

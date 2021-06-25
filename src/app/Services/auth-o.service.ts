@@ -2,12 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
+import { UserManager } from 'oidc-client';
 import { authConfig } from '../Configs/auth.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthOService {
+
+  // private _userManager!: UserManager;
 
   constructor(private http: HttpClient, private oauthService:OAuthService){
     this.configureSingleSignOn();
@@ -29,6 +32,10 @@ export class AuthOService {
 
   getIdentityClaims() {
     return this.oauthService.getIdentityClaims();
+  }
+
+  getUserProfile() {
+    return this.oauthService.loadUserProfile();
   }
 
   get token(){

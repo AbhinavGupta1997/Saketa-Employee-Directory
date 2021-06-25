@@ -8,6 +8,7 @@ import { JobTitleService } from 'src/app/Services/job-title.service';
 import { Department } from 'src/app/Models/department.model';
 import { JobTitle } from 'src/app/Models/job-title.model';
 import { Office } from 'src/app/Models/office.model';
+import { ClaimsService } from 'src/app/Services/claims.service';
 
 @Component({
   selector: 'app-add-edit',
@@ -47,14 +48,27 @@ export class AddEditComponent implements OnInit {
     private employees: EmployeeService,
     private departmentService: DepartmentService,
     private officeService: OfficeService,
-    private jobTitleService: JobTitleService) { }
+    private jobTitleService: JobTitleService,
+    private claimService: ClaimsService) { }
 
   ngOnInit() {
     this.getEmployees();
     this.getDepartments();
     this.getOffices();
     this.getJobTitles();
+    // this.getClaims();
   }
+
+  // claims: any[] = [];
+
+  // role = this.claimService.role;
+  // role!: string;
+
+  // getClaims(): void {
+  //   this.claimService.getClaims()
+  //   .subscribe(claims => {this.claims = claims;
+  //   this.role = claims[8].value})
+  // }
 
   getEmployees(): void {
     this.employees.getEmployees()

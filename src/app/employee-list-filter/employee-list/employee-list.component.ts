@@ -8,6 +8,7 @@ import { OfficeService } from 'src/app/Services/office.service';
 import { JobTitleService } from 'src/app/Services/job-title.service';
 import { DepartmentService } from 'src/app/Services/department.service';
 import { AppComponent } from 'src/app/app.component';
+import { ClaimsService } from 'src/app/Services/claims.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -40,7 +41,8 @@ export class EmployeeListComponent implements OnInit {
     private departmentService: DepartmentService,
     private officeService: OfficeService,
     private jobTitleService: JobTitleService,
-    private appComponent: AppComponent) { 
+    private appComponent: AppComponent,
+    private claimService: ClaimsService) { 
   }
 
   isSearchTextSent = false;
@@ -52,6 +54,17 @@ export class EmployeeListComponent implements OnInit {
     // this.getEmployees();
     this.getEmployeeList();
     this.employees.getEmpData().subscribe(data => this.filteredEmpData = data);
+    this.getClaims();
+  }
+
+  claims: any[] = [];
+
+  role!: string;
+
+  getClaims(): void {
+    this.claimService.getClaims()
+    .subscribe(claims => {this.claims = claims;
+    this.role = claims[8].value})
   }
 
   filteredEmpData: Employee[] = this.employeees;
@@ -77,7 +90,7 @@ export class EmployeeListComponent implements OnInit {
   // }
 
   getDepartments(): void {
-    this.appComponent.getDepartments()
+    this.departmentService.getDepartments()
     .subscribe(departments => {this.departments = departments;
   });
   }

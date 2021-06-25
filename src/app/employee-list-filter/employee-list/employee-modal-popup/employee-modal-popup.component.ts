@@ -3,6 +3,7 @@ import { Department } from 'src/app/Models/department.model';
 import { Employee } from 'src/app/Models/employee.model';
 import { JobTitle } from 'src/app/Models/job-title.model';
 import { Office } from 'src/app/Models/office.model';
+import { ClaimsService } from 'src/app/Services/claims.service';
 import { DepartmentService } from 'src/app/Services/department.service';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { JobTitleService } from 'src/app/Services/job-title.service';
@@ -34,13 +35,25 @@ export class EmployeeModalPopupComponent implements OnInit {
   constructor(private employeeService: EmployeeService,
     private departmentService: DepartmentService,
     private officeService: OfficeService,
-    private jobTitleService: JobTitleService) { }
+    private jobTitleService: JobTitleService,
+    private claimService: ClaimsService) { }
 
   ngOnInit() {
     this.getEmployee();
     this.getDepartments();
     this.getJobTitles();
     this.getOffices();
+    this.getClaims();
+  }
+
+  claims: any[] = [];
+
+  role!: string;
+
+  getClaims(): void {
+    this.claimService.getClaims()
+    .subscribe(claims => {this.claims = claims;
+    this.role = claims[8].value})
   }
 
   getEmployees(): void {

@@ -22,5 +22,5 @@ export const authConfig: AuthConfig = {
 
   requestAccessToken: true,
 
-  // responseType: 'code',
+  responseType: 'code',
 }

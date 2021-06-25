@@ -36,7 +36,7 @@
         <label>Location: </label>
         <div class="modalOffice values">{{ officeLocation }}</div>
     </div>
-    <button id="modalButton" (click)="changeEditStatus()">Edit</button>
+    <button id="modalButton" (click)="changeEditStatus()" *ngIf="role === 'Admin'">Edit</button>
     <button (click)="changeDisplayStatus(false)">Close</button>
     <div *ngIf="editBtnStatus === true" id="modalEditEmployee" class="editModal">
         <app-add-edit [employeeId]="employeeId" (btnStatusEvent)="changeStatusFalse($event)"></app-add-edit>

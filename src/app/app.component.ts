@@ -9,7 +9,7 @@
 //   title = 'Saketa-Employee-Directory';
 // }
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 import { authConfig } from './Configs/auth.config'
@@ -28,7 +28,7 @@ import { AuthOService } from './Services/auth-o.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   // userName: string = null;
   // employeeCount!: number;
@@ -42,9 +42,28 @@ export class AppComponent {
     this.configureSingleSignOn();
   }
 
-  configureSingleSignOn(){
+  claims1: any;
+  accessToken1: any;
+  token1: any;
+
+  ngOnInit() {
+    this.configureSingleSignOn();
+    this.accessToken1 = this.authService.accessToken;
+    this.token1 = this.authService.token;
+  }
+
+  configureSingleSignOn() {
     this.authService.configureSingleSignOn();
   }
+
+  getUserProfile() {
+    this.authService.getUserProfile();
+  }
+
+  // userProfileInfo = this.authService.getUserProfile();
+
+  claims = this.authService.getIdentityClaims();
+  // claimsSub = this.claims
 
   // configureSingleSignOn(){
   //   this.oauthService.configure(authConfig);
@@ -124,21 +143,21 @@ export class AppComponent {
   //   // return this.http.get(apiUrl, { headers: headers })
   // }
 
-  getEmployees(){
-    var reqHeader = new HttpHeaders({ 
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + this.accessToken
-     });
-    return this.http.get<Employee[]>(this.APIUrl + '/Employee', { headers: reqHeader });
-  }
+  // getEmployees(){
+  //   var reqHeader = new HttpHeaders({ 
+  //       'Content-Type': 'application/json',
+  //       'Authorization': 'Bearer ' + this.accessToken
+  //    });
+  //   return this.http.get<Employee[]>(this.APIUrl + '/Employee', { headers: reqHeader });
+  // }
 
-  getDepartments(){
-    var reqHeader = new HttpHeaders({ 
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + this.accessToken
-     });
-    return this.http.get<Department[]>(this.APIUrl + '/Department', { headers: reqHeader });
-  }
+  // getDepartments(){
+  //   var reqHeader = new HttpHeaders({ 
+  //       'Content-Type': 'application/json',
+  //       'Authorization': 'Bearer ' + this.accessToken
+  //    });
+  //   return this.http.get<Department[]>(this.APIUrl + '/Department', { headers: reqHeader });
+  // }
 
   // getEmployees(){
   //   var reqHeader = new HttpHeaders({ 
