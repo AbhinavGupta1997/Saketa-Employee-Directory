@@ -3,7 +3,6 @@
     <form id="add-emp" [formGroup]="addEmployeeForm" (ngSubmit)="onSubmit()">
         <h1>Add Employee Details</h1>
         <p>Please fill all the details</p>
-        <!-- <div>{{role}}</div> -->
         <hr>
         <div>
             <div class="form-group">
@@ -53,7 +52,6 @@
                 <label for="jobTitle"><b>Job Title</b><span class="req-data">*</span></label>
                 <select name="jobTitle" id="jobTitle" formControlName="jobTitle">
                     <option [value]="jobTitle.jobTitleId" *ngFor="let jobTitle of jobTitles">{{ jobTitle.jobTitleName }}</option>
-                    <!-- <option [value]="jobTitle.JobTitleId" *ngFor="let jobTitle of jobTitles">{{ jobTitle.JobTitleName }}</option> -->
                 </select>
 
                 <span *ngIf="!jobTitle.valid && (jobTitle.touched || userSubmitted)"
@@ -67,7 +65,6 @@
                 <label for="office"><b>Office</b><span class="req-data">*</span></label>
                 <select name="office" id="office" formControlName="office">
                     <option [value]="office.officeId" *ngFor="let office of offices">{{ office.officeLocation }}</option>
-                    <!-- <option [value]="office.OfficeId" *ngFor="let office of offices">{{ office.OfficeLocation }}</option> -->
                 </select>
 
                 <span *ngIf="!office.valid && (office.touched || userSubmitted)"
@@ -81,7 +78,6 @@
                 <label for="department"><b>Department</b><span class="req-data">*</span></label>
                 <select name="department" id="department" formControlName="department">
                     <option [value]="department.departmentId" *ngFor="let department of departments">{{ department.departmentName }}</option>
-                    <!-- <option [value]="department.DepartmentId" *ngFor="let department of departments">{{ department.DepartmentName }}</option> -->
                 </select>
 
                 <span *ngIf="!department.valid && (department.touched || userSubmitted)"

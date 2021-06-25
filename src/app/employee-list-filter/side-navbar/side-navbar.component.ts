@@ -40,30 +40,24 @@ export class SideNavbarComponent implements OnInit {
   applyDepartmentFilter(value: string) {
     var deptId = this.departments.find((department: Department) =>
       department.departmentName === value)?.departmentId;
-      // department.DepartmentName === value)?.DepartmentId;
     var employee = this.employeeData.filter((employee: any) =>
       employee.departmentId === deptId);
-      // employee.DepartmentId === deptId);
     this.employees.updateEmployee(employee);
   }
 
   applyJobTitleFilter(value: string) {
     var jobTitleId = this.jobTitles.find((jTitle: JobTitle) =>
     jTitle.jobTitleName === value)?.jobTitleId;
-    // jTitle.JobTitleName === value)?.JobTitleId;
     var employee = this.employeeData.filter((employee: any) =>
       employee.jobTitleId === jobTitleId);
-      // employee.JobTitleId === jobTitleId);
     this.employees.updateEmployee(employee);
   }
 
   applyOfficeFilter(value: string) {
     var officeId = this.offices.find((office: Office) =>
     office.officeLocation === value)?.officeId;
-    // office.OfficeLocation === value)?.OfficeId;
     var employee = this.employeeData.filter((employee: any) =>
       employee.officeId === officeId);
-      // employee.OfficeId === officeId);
     this.employees.updateEmployee(employee);
   }
 
@@ -101,17 +95,14 @@ export class SideNavbarComponent implements OnInit {
 
   getCountDepartment(deptId: number) {
     return this.employeeData.filter((employee: Employee) => employee.departmentId === deptId).length;
-    // return this.employeeData.filter((employee: Employee) => employee.DepartmentId === deptId).length;
   }
 
   getCountOffice(officeId: number) {
     return this.employeeData.filter((employee: Employee) => employee.officeId === officeId).length;
-    // return this.employeeData.filter((employee: Employee) => employee.OfficeId === officeId).length;
   }
 
   getCountJobTitle(jTitleId: number) {
     return this.employeeData.filter((employee: Employee) => employee.jobTitleId === jTitleId).length;
-    // return this.employeeData.filter((employee: Employee) => employee.JobTitleId === jTitleId).length;
   }
 
 }

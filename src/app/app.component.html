@@ -1,34 +1,12 @@
-<!-- <app-home></app-home> -->
-
-<!-- <app-header></app-header>
-<app-employee-list-filter></app-employee-list-filter> -->
-<div *ngIf="!token1">
+<div *ngIf="!token">
     <img src="assets/Images/Saketa logo.png">
     <h1>Welcome to Saketa Employee Directory!</h1>
     <p class="tagline">The Ultimate People Directory Experience</p>
     <br />
     <p>Please Login to continue.</p>
 </div>
-
 <div>
-    <button *ngIf="!token1" (click)="login()">Sign In / Sign Up</button>
-    <button *ngIf="token1" (click)="logout()">Logout</button>
+    <button *ngIf="!token" (click)="login()">Sign In / Sign Up</button>
+    <button *ngIf="token" (click)="logout()">Logout</button>
 </div>
-
-<!-- <div>{{userProfileInfo}}</div> -->
-<!-- <div>{{claims}}</div> -->
-
-<!-- <h2>Id Token</h2>
-<p>{{idToken}}</p> -->
-
-<!-- <h6>Access Token</h6>
-<p>{{accessToken}}</p> -->
-
-<!-- <h3>Token</h3>
-<p>{{token}}</p> -->
- 
-<!-- <h2>Refresh Token</h2>
-<p>{{refreshToken}}</p> -->
-
-<!-- <router-outlet></router-outlet> -->
 <router-outlet *ngIf="token"></router-outlet>

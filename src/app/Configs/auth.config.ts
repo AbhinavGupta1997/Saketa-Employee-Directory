@@ -4,12 +4,9 @@ export const authConfig: AuthConfig = {
 
   // Url of the Identity Provider
   issuer: 'https://localhost:5001',
-//   issuer: 'https://steyer-identity-server.azurewebsites.net/identity',
 
   // URL of the SPA to redirect the user to after login
   redirectUri: 'http://localhost:4200/dashboard',
-//   redirectUri: window.location.origin + '/index.html',
-//   redirectUri: window.location.origin + '/dashboard',
 
   postLogoutRedirectUri: 'http://localhost:4200/',
 

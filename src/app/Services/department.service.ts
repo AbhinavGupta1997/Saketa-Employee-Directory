@@ -8,7 +8,9 @@ import { AuthOService } from './auth-o.service';
   providedIn: 'root'
 })
 export class DepartmentService {
+
   readonly APIUrl = "https://localhost:6001/api";
+  
   accessToken = this.authService.accessToken;
 
   httpOptions = {
@@ -21,7 +23,6 @@ export class DepartmentService {
   constructor(private http: HttpClient, private authService: AuthOService) { }
 
   getDepartments(): Observable<Department[]> {
-    // return this.http.get<Department[]>(this.APIUrl + '/Department');
     return this.http.get<Department[]>(this.APIUrl + '/Department', this.httpOptions);
   }
 
@@ -32,7 +33,6 @@ export class DepartmentService {
 
   getDepartmentCount(): Observable<number> {
     const url = `${this.APIUrl}/Department/GetDepartmentCount/1`;
-    // const url = `${this.APIUrl}/Department/GetDepartmentCount/${id}`;
     return this.http.get<number>(url);
   }
 }

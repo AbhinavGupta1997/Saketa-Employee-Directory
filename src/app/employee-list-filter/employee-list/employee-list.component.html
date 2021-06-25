@@ -32,12 +32,8 @@
 <div class="display-card-container">
     <div *ngFor="let emp of filteredEmpData" class="wd-24">
         <div (click)="changeDisplayStatus(emp.employeeId)">
-            <!-- <div (click)="changeDisplayStatus(emp.EmployeeId)"> -->
             <img src="assets\Images\User image.jpg">
             <div class="wd-calc">
-                <!-- <div class="displayName">{{ emp.PreferredName }}</div>
-                <div class="displayJobTitle">{{ getJobTitle(emp.JobTitleId) }}</div>
-                <div class="displayDept">{{ getDepartment(emp.DepartmentId) }} Department</div> -->
                 <div class="displayName">{{ emp.preferredName }}</div>
                 <div class="displayJobTitle">{{ getJobTitle(emp.jobTitleId) }}</div>
                 <div class="displayDept">{{ getDepartment(emp.departmentId) }} Department</div>

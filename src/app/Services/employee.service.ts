@@ -25,16 +25,11 @@ export class EmployeeService {
     })
   };
 
-  getEmployees(): Observable<Employee[]> {
-    // var reqHeader = new HttpHeaders({ 
-    //     'Content-Type': 'application/json',
-    //     'Authorization': 'Bearer ' + this.accessToken
-    //  });
-    return this.http.get<Employee[]>(this.APIUrl + '/Employee', this.httpOptions);
-    // return this.http.get<Employee[]>(this.APIUrl + '/Employee', { headers: reqHeader });
-  }
-
   constructor(private http: HttpClient, private authService: AuthOService) { }
+
+  getEmployees(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(this.APIUrl + '/Employee', this.httpOptions);
+  }
 
   getEmployeeData(employees: Employee[]) {
     this.employees.next(employees);
@@ -47,19 +42,6 @@ export class EmployeeService {
   getEmpData(): Observable<Employee[]> {
     return this.employees.asObservable();
   }
-
-  // getEmployees(): Observable<Employee[]> {
-  //   return this.http.get<Employee[]>(this.APIUrl + '/Employee');
-  // }
-
-  // getLoggedInUser(): Observable<any> {
-  //   const headers = new Headers({
-  //     'Content-Type': 'application/json',
-  //     'Authorization': `Bearer ${this.accessToken}`
-  //   })
-  //   return this.http.get(this.APIUrl + '/Employee', { headers: headers })
-  //   // return this.http.get(apiUrl, { headers: headers })
-  // }
 
   getEmployeeById(id: number): Observable<Employee> {
     const url = `${this.APIUrl}/Employee/${id}`;
@@ -74,8 +56,4 @@ export class EmployeeService {
     const url = `${this.APIUrl}/Employee/${id}`;
     return this.http.put<Employee>(url, employee, this.httpOptions);
   }
-
-  // get accessToken() {
-  //   return this.oauthService.getAccessToken();
-  // }
 }
