@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
   getClaims(): void {
     this.claimService.getClaims()
     .subscribe(claims => {this.claims = claims;
-    this.username = claims[9].value})
+    this.username = claims[10].value})
   }
 
 }

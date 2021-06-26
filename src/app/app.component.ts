@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthOService } from './Services/auth-o.service';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,8 @@ import { AuthOService } from './Services/auth-o.service';
 })
 export class AppComponent implements OnInit {
 
-  token = this.authService.token;
-
-  constructor(private authService: AuthOService, private http: HttpClient){
-    this.configureSingleSignOn();
+  constructor(private authService: AuthOService,
+    private oauthService:OAuthService){
   }
 
   ngOnInit() {
@@ -29,5 +28,10 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  get token() {
+    let claims:any = this.oauthService.getIdentityClaims();
+    return claims ? claims : null;
   }
 }

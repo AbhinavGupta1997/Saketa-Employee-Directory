@@ -9,7 +9,7 @@ export class ClaimsService {
 
   constructor(private http: HttpClient, private authService: AuthOService) { }
 
-  private claimsUrl = 'https://localhost:6001/api/Employee/Privacy'
+  private claimsUrl = 'https://localhost:6001/api/Employee/GetClaims'
   accessToken = this.authService.accessToken;
 
   httpOptions = {
